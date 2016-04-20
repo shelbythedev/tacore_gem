@@ -81,11 +81,11 @@ module TACore
 
   class Venue < Auth
     def self.create(client)
-      return JSON.parse(make_request('post', '/venues', {:client_api_key => api_key}, {}).body)
+      return JSON.parse(make_request('post', '/venues', {:client_api_key => client}, {}).body)
     end
 
     def self.destroy(client, venue)
-      return JSON.parse(make_request('delete', '/venues/' + venue, {:client_api_key => api_key}, {}).body)
+      return JSON.parse(make_request('delete', '/venues/' + venue, {:client_api_key => client}, {}).body)
     end
   end
 
