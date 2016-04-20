@@ -80,7 +80,9 @@ module TACore
   end
 
   class Venue < Auth
-
+    def create(client)
+      return JSON.parse(make_request('post', '/venues', {:client_api_key => api_key}, {}).body)
+    end
   end
 
   class Test < Auth
