@@ -2,6 +2,8 @@
 #
 # => TACore API
 #
+require 'json'
+require 'rest-client'
 module TACore
   class Configuration
 	    attr_accessor :api_url
