@@ -83,6 +83,10 @@ module TACore
     def create(client)
       return JSON.parse(make_request('post', '/venues', {:client_api_key => api_key}, {}).body)
     end
+
+    def destroy(client, venue)
+      return JSON.parse(make_request('delete', '/venues/' + venue, {:client_api_key => api_key}, {}).body)
+    end
   end
 
   class Test < Auth
