@@ -97,7 +97,7 @@ module TACore
   class Client < Auth
     def self.create(token, client)
       # => Requres Service Admin Key & Client API Key
-      request(:post, '/api/v1/clients', token, {:headers => {:admin_key => TACore.configuration.admin_key}, :body => { :client => {:name => client[:name]} }})
+      request(:post, '/api/v1/clients', token, {:headers => {:admin_key => TACore.configuration.admin_key}, :body => { :client => client }})
     end
 
     def self.find(token, api_key)
