@@ -129,6 +129,10 @@ module TACore
       request(:post, '/api/v1/apps', token, {:body => {:app => app}, :headers => {:admin_key => TACore.configuration.admin_key}})
     end
 
+    def self.all(token)
+      request(:get, '/api/v1/apps/all', token, {:headers => {:admin_key => TACore.configuration.admin_key}})
+    end
+
     def self.find(token, uid)
       request(:get, '/api/v1/apps/' + uid, token, {:headers => {:admin_key => TACore.configuration.admin_key}})
     end

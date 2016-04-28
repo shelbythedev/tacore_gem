@@ -23,6 +23,17 @@ describe TACore do
       app = TACore::App.destroy(TOKEN, app["uid"])
       expect(app["destroy"]).to_not eq(false)
     end
+
+    it "get all apps" do
+      app = TACore::App.create(TOKEN, TEST_APP)
+      expect(app["name"]).to eq(TEST_APP[:name])
+
+      apps = TACore::App.all(TOKEN)
+      expect(apps.count).to be > 0
+
+      app = TACore::App.destroy(TOKEN, app["uid"])
+      expect(app["destroy"]).to_not eq(false)
+    end
   end
 
   context "Alter App" do
