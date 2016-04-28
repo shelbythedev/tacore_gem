@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'TACore'
-  s.version     = '2.0.2'
+  s.version     = '2.0.3'
   s.date        = '2016-04-26'
   s.summary     = "ThinAer Core API"
   s.description = "This allows access to the TA Core API"
