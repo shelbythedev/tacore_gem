@@ -133,16 +133,16 @@ module TACore
       request(:get, '/api/v1/apps/all', token, {:headers => {:admin_key => TACore.configuration.admin_key}})
     end
 
-    def self.find(token, uid)
+    def self.find(token, id)
       request(:get, '/api/v1/apps/' + uid, token, {:headers => {:admin_key => TACore.configuration.admin_key}})
     end
 
-    def self.update(token, uid, app)
+    def self.update(token, id, app)
       # => Requres Service Admin Key
       request(:put, '/api/v1/apps/' + uid, token, {:body => {:app => app}, :headers => {:admin_key => TACore.configuration.admin_key}})
     end
 
-    def self.destroy(token, uid)
+    def self.destroy(token, id)
       request(:delete, '/api/v1/apps/' + uid, token, {:headers => {:admin_key => TACore.configuration.admin_key}})
     end
   end

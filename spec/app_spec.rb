@@ -17,10 +17,10 @@ describe TACore do
       app = TACore::App.create(TOKEN, TEST_APP)
       expect(app["name"]).to eq(TEST_APP[:name])
 
-      app_data = TACore::App.find(TOKEN, app["uid"])
+      app_data = TACore::App.find(TOKEN, app["id"])
       expect(app_data["id"]).to eq(app["id"])
 
-      app = TACore::App.destroy(TOKEN, app["uid"])
+      app = TACore::App.destroy(TOKEN, app["id"])
       expect(app["destroy"]).to_not eq(false)
     end
 
@@ -31,7 +31,7 @@ describe TACore do
       apps = TACore::App.all(TOKEN)
       expect(apps.count).to be > 0
 
-      app = TACore::App.destroy(TOKEN, app["uid"])
+      app = TACore::App.destroy(TOKEN, app["id"])
       expect(app["destroy"]).to_not eq(false)
     end
   end
@@ -41,10 +41,10 @@ describe TACore do
       app = TACore::App.create(TOKEN, TEST_APP)
       expect(app["name"]).to eq(TEST_APP[:name])
 
-      app = TACore::App.update(TOKEN, app["uid"], {:name => "My new test name update"})
+      app = TACore::App.update(TOKEN, app["id"], {:name => "My new test name update"})
       expect(app["name"]).to_not eq(TEST_APP[:name])
 
-      expect(TACore::App.destroy(TOKEN, app["uid"])).to_not eq(false)
+      expect(TACore::App.destroy(TOKEN, app["id"])).to_not eq(false)
     end
   end
 
