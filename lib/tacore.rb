@@ -134,16 +134,16 @@ module TACore
     end
 
     def self.find(token, id)
-      request(:get, '/api/v1/apps/' + uid, token, {:headers => {:admin_key => TACore.configuration.admin_key}})
+      request(:get, '/api/v1/apps/' + id.to_s, token, {:headers => {:admin_key => TACore.configuration.admin_key}})
     end
 
     def self.update(token, id, app)
       # => Requres Service Admin Key
-      request(:put, '/api/v1/apps/' + uid, token, {:body => {:app => app}, :headers => {:admin_key => TACore.configuration.admin_key}})
+      request(:put, '/api/v1/apps/' + id.to_s, token, {:body => {:app => app}, :headers => {:admin_key => TACore.configuration.admin_key}})
     end
 
     def self.destroy(token, id)
-      request(:delete, '/api/v1/apps/' + uid, token, {:headers => {:admin_key => TACore.configuration.admin_key}})
+      request(:delete, '/api/v1/apps/' + id.to_s, token, {:headers => {:admin_key => TACore.configuration.admin_key}})
     end
   end
 
@@ -153,16 +153,20 @@ module TACore
     end
 
     def self.find(token, api_key, id)
-      request(:get, '/api/v1/venues/' + id, token, {:headers => {:client_api_key => api_key}})
+      request(:get, '/api/v1/venues/' + id.to_s, token, {:headers => {:client_api_key => api_key}})
     end
 
-    def self.all(token)
+    def self.devices(token, api_key, id)
+      request(:get, '/api/v1/venues/' + id.to_s + '/devices', token, {:headers => {:client_api_key => api_key}})
+    end
+
+    def self.all(token, api_key)
       # returns all venues that belong to this client
       request(:get, '/api/v1/venues', token, {:headers => {:client_api_key => api_key}})
     end
 
     def self.destroy(token, api_key, id)
-      request(:delete, '/api/v1/venues/' + id, token, {:headers => {:client_api_key => api_key}})
+      request(:delete, '/api/v1/venues/' + id.to_s, token, {:headers => {:client_api_key => api_key}})
     end
   end
 
@@ -172,7 +176,7 @@ module TACore
     end
 
     def self.update(token, api_key, id, device = {})
-      request(:put, '/api/v1/devices/' + id, token, {:body => {:device => device}, :headers => {:client_api_key => api_key}})
+      request(:put, '/api/v1/devices/' + id.to_s, token, {:body => {:device => device}, :headers => {:client_api_key => api_key}})
     end
 
     # => Create and Destroy are for testing only and require the admin_key
@@ -181,7 +185,7 @@ module TACore
     end
 
     def self.destroy(token, api_key, id)
-      request(:delete, '/api/v1/devices/' + id, token, {:headers => {:admin_key => TACore.configuration.admin_key, :client_api_key => api_key}})
+      request(:delete, '/api/v1/devices/' + id.to_s, token, {:headers => {:admin_key => TACore.configuration.admin_key, :client_api_key => api_key}})
     end
   end
 
