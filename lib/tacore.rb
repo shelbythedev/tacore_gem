@@ -171,12 +171,20 @@ module TACore
   end
 
   class Device < Auth
-    def self.unassigned(token, api_key)
-      request(:get, '/api/v1/devices/unassigned', token, {:headers => {:client_api_key => api_key}})
+    def self.unassigned(token, api_key, device_type)
+      request(:get, '/api/v1/devices/unassigned' + device_type, token, {:headers => {:client_api_key => api_key}})
     end
 
     def self.update(token, api_key, id, device = {})
       request(:put, '/api/v1/devices/' + id.to_s, token, {:body => {:device => device}, :headers => {:client_api_key => api_key}})
+    end
+
+    def self.find(token, api_key, id)
+      request(:get, '/api/v1/devices/' + id.to_s, token, {:headers => {:client_api_key => api_key}})
+    end
+
+    def self.all(token, api_key, device_type)
+      request(:get, '/api/v1/devices/all' + device_type, token, {:headers => {:client_api_key => api_key}})
     end
 
     # => Create and Destroy are for testing only and require the admin_key

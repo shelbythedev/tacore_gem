@@ -9,6 +9,6 @@ Gem::Specification.new do |s|
   s.files       = ["lib/tacore.rb", "lib/exceptions.rb"]
   s.homepage    = 'http://thinaer.io'
   s.license     = 'None'
-  s.add_dependency("oauth2", "~>1.1.0")
+  s.add_dependency("oauth2", "~>1.1.1")
   s.add_development_dependency "rspec"
 end
