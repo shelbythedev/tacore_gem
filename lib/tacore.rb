@@ -145,7 +145,7 @@ module TACore
     end
 
     def self.all(token, api_key, device_type)
-      request(:get, '/api/v1/devices/all' + device_type, token, {:headers => {:client_api_key => api_key}})
+      request(:get, '/api/v1/devices/all/' + device_type, token, {:headers => {:client_api_key => api_key}})
     end
 
   end
