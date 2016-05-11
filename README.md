@@ -8,6 +8,7 @@ TACore::Test.new
 ### Setup
 ```
 TACore.configure do |config|
+  # => Rails ENV check is not required
   if Rails.env.development?
     config.api_url = "http://cirrus_api.dev"
     config.client_id = ""
