@@ -1,10 +1,17 @@
-# THINAER CORE API
+# THINAER Core API GEM
 #
-# => TACore API
-#
+# Author::    Greg Winn (greg.winn@thinaer.io)
+# Copyright:: Copyright (c) 2016 Advantix ThinAer, LLC
+# License::   NONE
+
 require 'oauth2'
 require 'exceptions'
+
+# This module holds every public class and method need to
+# to authenticate and configure the TACore GEM
 module TACore
+
+  # Configuration of the config params set in an init file.
   class Configuration
 	    attr_accessor :api_url
       attr_accessor :admin_key
@@ -52,6 +59,7 @@ module TACore
 	  end
 	end
 
+  # Authorization class that will create the OAuth2 token and authenticate with the API
   class Auth < Configuration
     attr_accessor :token
     attr_accessor :client
@@ -60,6 +68,7 @@ module TACore
       @client = OAuth2::Client.new(TACore.configuration.client_id, TACore.configuration.client_secret, :site => TACore.configuration.api_url)
     end
 
+    # Used to retrive the TOKEN after Authentication
     def self.login
       core = TACore::Auth.new
       @@token = core.client.client_credentials.get_token
@@ -69,7 +78,7 @@ module TACore
       @@token
     end
 
-    #
+    # Internal request only.
     # Request method
     # Example:
     #   request(*1, *2, *3, *4)
