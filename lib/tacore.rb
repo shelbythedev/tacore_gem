@@ -100,17 +100,17 @@ module TACore
 
   end
 
-  # => Core Models
-  #------------------------------
-
+  # Client Class used for client method requests.
   class Client < Auth
 
+    # Get details on a specific client by api_key
     def self.find(token, api_key)
       #return JSON.parse(make_request('get', '/clients/' + api_key, {:client_api_key => api_key}, {}).body)
       request(:get, '/api/v1/clients/' + api_key, token, {:headers => {:client_api_key => api_key}})
     end
 
-    def self.update(token, api_key, client)
+    # Update a client details via api_key
+    def self.update(token, api_key, client = {})
       request(:put, '/api/v1/clients/' + api_key, token, {:body => {:client => client}, :headers => {:client_api_key => api_key}})
     end
 
@@ -141,6 +141,7 @@ module TACore
   end
 
   class Device < Auth
+
     def self.unassigned(token, api_key, device_type)
       request(:get, '/api/v1/devices/unassigned/' + device_type, token, {:headers => {:client_api_key => api_key}})
     end
