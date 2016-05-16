@@ -1,7 +1,5 @@
 pages:
   script:
-  - mkdir .public
-  - cp -r * doc
   - mv doc public
   artifacts:
     paths:
