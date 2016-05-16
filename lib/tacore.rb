@@ -14,13 +14,11 @@ module TACore
   # Configuration of the config params set in an init file.
   class Configuration
 	    attr_accessor :api_url
-      attr_accessor :admin_key
       attr_accessor :client_id
       attr_accessor :client_secret
 
 	    def initialize
 	      self.api_url 		= nil
-        self.admin_key = nil
         self.client_id       = nil
         self.client_secret   = nil
 	    end
@@ -36,16 +34,11 @@ module TACore
 
 	class << self
 		attr_accessor :api_url
-    attr_accessor :admin_key
     attr_accessor :client_id
     attr_accessor :client_secret
 		def api_url
 	    	raise "api_url is needed to connect" unless @api_url
 	    	@api_url
-	  end
-
-    def admin_key
-	    	@admin_key
 	  end
 
     def client_id
@@ -69,6 +62,7 @@ module TACore
     end
 
     # Used to retrive the TOKEN after Authentication
+    # @return [Oauth2 Object]
     def self.login
       core = TACore::Auth.new
       @@token = core.client.client_credentials.get_token
@@ -80,14 +74,10 @@ module TACore
 
     # Internal request only.
     # Request method
-    # Example:
-    #   request(*1, *2, *3, *4)
-    #   *1) [:get, :post, :put, :delete]
-    #   *2) 'URI as string'
-    #   *3) Authed users token (String)
-    #   *4) Body or Header options in hash
-    #     *4.1) {:body => {}, :headers => {}}
-    #
+    # @param method [Symbol<:get, :post, :put, :delete>]
+    # @param uri [String]
+    # @param token [String] Oauth2 Token after Authentication
+    # @param options [Hash<{:headers => {}, :body => {}}>]
     def self.request(method, uri, token, options = {})
       core = TACore::Auth.new
       begin
@@ -102,14 +92,30 @@ module TACore
 
   # Client Class used for client method requests.
   class Client < Auth
+    # Allows an application to add a Client
+    # @param token [String] Oauth2 Token after Authentication
+    # @param client [Object]
+    # @return [Object] in JSON format - the new client
+    # @note The new Client will be owned by the application creating it.
+    def self.create(token, client = {})
+      request(:post, '/api/v1/clients', token, {:body => {:client => client}})
+    end
 
     # Get details on a specific client by api_key
+    # @param token [String] Oauth2 Token after Authentication
+    # @param api_key [String] used from {Client.create}
+    # @return [Object] in JSON format
     def self.find(token, api_key)
       #return JSON.parse(make_request('get', '/clients/' + api_key, {:client_api_key => api_key}, {}).body)
       request(:get, '/api/v1/clients/' + api_key, token, {:headers => {:client_api_key => api_key}})
     end
 
     # Update a client details via api_key
+    # @param token [String] Oauth2 Token after Authentication
+    # @param api_key [String] used from {Client.create}
+    # @param client [Object]
+    # @return [Object] in JSON format
+    # @note The `client` object currently only supports `name`
     def self.update(token, api_key, client = {})
       request(:put, '/api/v1/clients/' + api_key, token, {:body => {:client => client}, :headers => {:client_api_key => api_key}})
     end
@@ -117,24 +123,48 @@ module TACore
   end
 
 
+  # => Venue is used to group devices fro Clients, Venue could be a location or an area within a location.
   class Venue < Auth
+    # Create a new Venue under a Client.
+    # @param token [String] Oauth2 Token after Authentication
+    # @param api_key [String] used from {Client.create}
+    # @return [Object] in JSON format
     def self.create(token, api_key)
       request(:post, '/api/v1/venues', token, {:headers => {:client_api_key => api_key}})
     end
 
+    # Get back Venue information
+    # @param token [String] Oauth2 Token after Authentication
+    # @param api_key [String] used from {Client.create}
+    # @param id [Integer] the id of the Venue from {Venue.create}
+    # @return [Object] in JSON format
     def self.find(token, api_key, id)
       request(:get, '/api/v1/venues/' + id.to_s, token, {:headers => {:client_api_key => api_key}})
     end
 
+    # Get all devices assigned to this venue. Also see {Device.update}.
+    # @param token [String] Oauth2 Token after Authentication
+    # @param api_key [String] used from {Client.create}
+    # @param id [Integer] the id of the Venue from {Venue.create}
+    # @param device_type [String] select the device_type see {Device.device_types}
+    # @return [Array<Object, Object>] in JSON format
     def self.devices(token, api_key, id, device_type)
       request(:get, '/api/v1/venues/' + id.to_s + '/devices/' + device_type, token, {:headers => {:client_api_key => api_key}})
     end
 
+    # Display all Venues for the client
+    # @param token [String] Oauth2 Token after Authentication
+    # @param api_key [String] used from {Client.create}
+    # @return [Array<Object, Object>] in JSON format
     def self.all(token, api_key)
       # returns all venues that belong to this client
       request(:get, '/api/v1/venues', token, {:headers => {:client_api_key => api_key}})
     end
 
+    # @param token [String] Oauth2 Token after Authentication
+    # @param api_key [String] used from {Client.create}
+    # @param id [Integer] the id of the Venue from {Venue.create}
+    # @return [Hash<{"destroy": false, Object}>] in JSON format
     def self.destroy(token, api_key, id)
       request(:delete, '/api/v1/venues/' + id.to_s, token, {:headers => {:client_api_key => api_key}})
     end
@@ -142,18 +172,45 @@ module TACore
 
   class Device < Auth
 
+    # Show supported Device types
+    # @return [Hash]
+    def self.device_types
+      devices = {:cirrus => ["cirrus"],
+                :iris => ["iris"]}
+    end
+
+    # Show all devices that DO NOT have a venue_id set
+    # @param token [String] Oauth2 Token after Authentication
+    # @param api_key [String] used from {Client.create}
+    # @param device_type [String] select the device_type see {Device.device_types}
+    # @return [Array<Object, Object>] in JSON format
     def self.unassigned(token, api_key, device_type)
       request(:get, '/api/v1/devices/unassigned/' + device_type, token, {:headers => {:client_api_key => api_key}})
     end
 
+    # Device.update is used to set the venue_id.
+    # @param token [String] Oauth2 Token after Authentication
+    # @param api_key [String] used from {Client.create}
+    # @param id [Integer] see {Device.unassigned} or {Device.all} to get the Device id
+    # @param device [Object]
+    # @return [Object] in JSON format
     def self.update(token, api_key, id, device = {})
       request(:put, '/api/v1/devices/' + id.to_s, token, {:body => {:device => device}, :headers => {:client_api_key => api_key}})
     end
 
+    # @param token [String] Oauth2 Token after Authentication
+    # @param api_key [String] used from {Client.create}
+    # @param id [Integer] see {Device.unassigned} or {Device.all} to get the Device id
+    # @return [Object] in JSON format
     def self.find(token, api_key, id)
       request(:get, '/api/v1/devices/' + id.to_s, token, {:headers => {:client_api_key => api_key}})
     end
 
+    # Display all devices that belong to this Client by device_type
+    # @param token [String] Oauth2 Token after Authentication
+    # @param api_key [String] used from {Client.create}
+    # @param device_type [String] select the device_type see {Device.device_types}
+    # @return [Array<Object, Object>] in JSON format
     def self.all(token, api_key, device_type)
       request(:get, '/api/v1/devices/all/' + device_type, token, {:headers => {:client_api_key => api_key}})
     end
