@@ -89,15 +89,16 @@ This is a test of the TACore GEM</code></pre>
 
 <h3 id="label-Examples">Examples</h3>
 
-<p>Create a new Client see <span class='object_link'><a href="TACore/Client.html#create-class_method" title="TACore::Client.create (method)">TACore::Client.create</a></span> “` data = “My
-Client” client = TACore::Client.create(TACORE_TOKEN, data)</p>
+<p>Create a new Client see <span class='object_link'><a href="TACore/Client.html#create-class_method" title="TACore::Client.create (method)">TACore::Client.create</a></span></p>
 
-<p><a href=""id"">client</a> # =&gt; 3122 <a href=""name"">client</a> # =&gt;
-“My Client” “`</p>
+<pre class="code ruby"><code class="ruby">client = TACore::Client.find(TACORE_TOKEN, &quot;ad62b2ffd21aed09b1ba0d3&quot;)
+
+client[&quot;id&quot;]  =&gt; 3122
+client[&quot;name&quot;]  =&gt; &quot;My Client&quot;</code></pre>
 </div></div>
 
     <div id="footer">
-  Generated on Mon May 16 15:45:47 2016 by
+  Generated on Mon May 16 15:52:30 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.1).
 </div>
