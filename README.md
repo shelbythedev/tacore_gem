@@ -25,7 +25,7 @@ TACORE_TOKEN = TACore::Auth.login.token
 ```
 
 ### Examples
-Create a new Client see {Client.create}
+Create a new Client see {TACore::Client.create}
 ```
 data = {name: "My Client"}
 client = TACore::Client.create(TACORE_TOKEN, data)
