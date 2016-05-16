@@ -92,6 +92,12 @@ module TACore
 
   # Client Class used for client method requests.
   class Client < Auth
+    # Get all Clients that belong to this application
+    # @param token [String] Oauth2 Token after Authentication
+    # @return [Array<Object, Object>] in JSON format
+    def self.all(token)
+      request(:get, '/api/v1/clients', token)
+    end
     # Allows an application to add a Client
     # @param token [String] Oauth2 Token after Authentication
     # @param client [Object]
