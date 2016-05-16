@@ -117,8 +117,8 @@ module TACore
       request(:get, '/api/v1/venues/' + id.to_s, token, {:headers => {:client_api_key => api_key}})
     end
 
-    def self.devices(token, api_key, id)
-      request(:get, '/api/v1/venues/' + id.to_s + '/devices', token, {:headers => {:client_api_key => api_key}})
+    def self.devices(token, api_key, id, device_type)
+      request(:get, '/api/v1/venues/' + id.to_s + '/devices/' + device_type, token, {:headers => {:client_api_key => api_key}})
     end
 
     def self.all(token, api_key)
