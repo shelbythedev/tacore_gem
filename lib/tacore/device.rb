@@ -6,6 +6,7 @@ module TACore
     # Show supported Device types
     # @return [Hash]
     def self.device_types
+      # @todo This data will soon come from the API itself, and the output is subject to change.
       devices = {:cirrus => ["cirrus"],
                 :iris => ["iris"]}
     end
@@ -55,7 +56,9 @@ module TACore
     # @param token [String] Oauth2 Token after Authentication
     # @param api_key [String] used from {Client.create}
     # @param id [Integer] see {Device.unassigned} or {Device.all} to get the Device id
-    # @return [Hash] in JSON format
+    # @param raw [Boolean]
+    # @return [Hash<raw=false> | Object<raw=true>] in JSON format
+    # @note raw [Boolean] when set to `true` will give the last 10 records of scan data.
     def self.scans(token, api_key, id, raw = false)
       request(:get, '/api/v1/devices/' + id.to_s + '/scans?raw=' + raw.to_s, token, {:headers => {:client_api_key => api_key}})
     end

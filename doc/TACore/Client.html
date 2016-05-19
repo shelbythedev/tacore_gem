@@ -98,7 +98,7 @@
   
   
     <dt class="r2 last">Defined in:</dt>
-    <dd class="r2 last">lib/tacore.rb</dd>
+    <dd class="r2 last">lib/tacore/client.rb</dd>
   
 </dl>
 <div class="clear"></div>
@@ -106,7 +106,10 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>Client Class used for client method requests.</p>
+<h1 id="label-3E++Client+Class+methods.">&gt;  Client Class methods.</h1>
+
+<p>Clients are companies, or groups of users that have access to the same
+data. When making requests it is important to keep the client api_key</p>
 
 
   </div>
@@ -348,12 +351,12 @@
       <pre class="lines">
 
 
-100
-101
-102</pre>
+10
+11
+12</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacore.rb', line 100</span>
+      <pre class="code"><span class="info file"># File 'lib/tacore/client.rb', line 10</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_all'>all</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='symbol'>:get</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/api/v1/clients</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_token'>token</span><span class='rparen'>)</span>
@@ -461,12 +464,12 @@
       <pre class="lines">
 
 
-112
-113
-114</pre>
+22
+23
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacore.rb', line 112</span>
+      <pre class="code"><span class="info file"># File 'lib/tacore/client.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='id identifier rubyid_client'>client</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='symbol'>:post</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/api/v1/clients</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:body</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:client</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_client'>client</span><span class='rbrace'>}</span><span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -569,13 +572,13 @@
       <pre class="lines">
 
 
-123
-124
-125
-126</pre>
+33
+34
+35
+36</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacore.rb', line 123</span>
+      <pre class="code"><span class="info file"># File 'lib/tacore/client.rb', line 33</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='rparen'>)</span>
   <span class='comment'>#return JSON.parse(make_request(&#39;get&#39;, &#39;/clients/&#39; + api_key, {:client_api_key =&gt; api_key}, {}).body)
@@ -708,12 +711,12 @@
       <pre class="lines">
 
 
-140
-141
-142</pre>
+50
+51
+52</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacore.rb', line 140</span>
+      <pre class="code"><span class="info file"># File 'lib/tacore/client.rb', line 50</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='comma'>,</span> <span class='id identifier rubyid_client'>client</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='symbol'>:put</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/api/v1/clients/</span><span class='tstring_end'>&#39;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='comma'>,</span> <span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:body</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:client</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_client'>client</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='symbol'>:headers</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:client_api_key</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='rbrace'>}</span><span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -728,7 +731,7 @@
 </div>
 
     <div id="footer">
-  Generated on Tue May 17 15:14:22 2016 by
+  Generated on Thu May 19 10:44:15 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.1).
 </div>

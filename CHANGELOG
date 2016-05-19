@@ -1,6 +1,10 @@
+#Version 3.3.0
+  - Added Device.scans to retrieve scan data for the device ID.
+  - Client, Venue, Device classes all moved to separate files lib/tacore/...
+
 # Version 3.2.0
   - Minor Version bump for new create methods allowing Client.create
   - Client.all added to show all clients that belong to the application
-  
+
 # Version 3.1.0
  - Added ability to call Venue.devices with a device type

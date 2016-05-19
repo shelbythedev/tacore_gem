@@ -115,7 +115,7 @@ the API</p>
 
 </div><div id="subclasses">
   <h2>Direct Known Subclasses</h2>
-  <p class="children"><span class='object_link'><a href="Client.html" title="TACore::Client (class)">Client</a></span>, <span class='object_link'><a href="Device.html" title="TACore::Device (class)">Device</a></span>, <span class='object_link'><a href="Test.html" title="TACore::Test (class)">Test</a></span>, <span class='object_link'><a href="Venue.html" title="TACore::Venue (class)">Venue</a></span></p>
+  <p class="children"><span class='object_link'><a href="Client.html" title="TACore::Client (class)">Client</a></span>, <span class='object_link'><a href="Device.html" title="TACore::Device (class)">Device</a></span>, <span class='object_link'><a href="Scan.html" title="TACore::Scan (class)">Scan</a></span>, <span class='object_link'><a href="Test.html" title="TACore::Test (class)">Test</a></span>, <span class='object_link'><a href="Venue.html" title="TACore::Venue (class)">Venue</a></span></p>
 </div>
 
 
@@ -593,8 +593,8 @@ the API</p>
   <span class='kw'>begin</span>
     <span class='id identifier rubyid_access'>access</span> <span class='op'>=</span> <span class='const'>OAuth2</span><span class='op'>::</span><span class='const'>AccessToken</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_core'>core</span><span class='period'>.</span><span class='id identifier rubyid_client'>client</span><span class='comma'>,</span> <span class='id identifier rubyid_token'>token</span><span class='rparen'>)</span>
     <span class='const'>JSON</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_access'>access</span><span class='period'>.</span><span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='id identifier rubyid_method'>method</span><span class='comma'>,</span> <span class='const'>TACore</span><span class='period'>.</span><span class='id identifier rubyid_configuration'>configuration</span><span class='period'>.</span><span class='id identifier rubyid_api_url'>api_url</span> <span class='op'>+</span> <span class='id identifier rubyid_uri'>uri</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_body'>body</span><span class='rparen'>)</span>
-  <span class='kw'>rescue</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>TACore</span><span class='op'>::</span><span class='const'>TokenError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Error, Token expired or external API is not responding.</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>TACore</span><span class='op'>::</span><span class='const'>TokenError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -607,7 +607,7 @@ the API</p>
 </div>
 
     <div id="footer">
-  Generated on Tue May 17 15:14:22 2016 by
+  Generated on Thu May 19 10:44:15 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.1).
 </div>
