@@ -18,7 +18,7 @@ module TACore
     # Get back Venue information
     # @param token [String] Oauth2 Token after Authentication
     # @param api_key [String] used from {Client.create}
-    # @param id [Integer] the id of the Venue from {Venue.create}
+    # @param key [String] the Key of the Venue from {Venue.create}
     # @return [Object] in JSON format
     def self.find(token, api_key, id)
       request(:get, '/api/v1/venues/' + id.to_s, token, {:headers => {:client_api_key => api_key}})
@@ -27,16 +27,16 @@ module TACore
     # Get all devices assigned to this venue. Also see {Device.update}.
     # @example See all the Devices assigned to a venue with the venue id and device type.
     #    # Using the client api_key as client["api_key"]
-    #    # Using the venue id as venue["id"]
-    #    devices = TACore::Venue.devices(TACORE_TOKEN, client["api_key"], venue["id"], "cirrus")
+    #    # Using the venue key as venue["key"]
+    #    devices = TACore::Venue.devices(TACORE_TOKEN, client["api_key"], venue["key"], "cirrus")
     # @example Use Device.device_types to set device_type
     #    # Using the client api_key as client["api_key"]
-    #    # Using the venue id as venue["id"]
+    #    # Using the venue key as venue["key"]
     #    device_types = TACore::Devices.device_types
-    #    devices = TACore::Venue.devices(TACORE_TOKEN, client["api_key"], venue["id"], device_types[:cirrus].first)
+    #    devices = TACore::Venue.devices(TACORE_TOKEN, client["api_key"], venue["key"], device_types[:cirrus].first)
     # @param token [String] Oauth2 Token after Authentication
     # @param api_key [String] used from {Client.create}
-    # @param id [Integer] the id of the Venue from {Venue.create}
+    # @param key [String] the Key of the Venue from {Venue.create}
     # @param device_type [String] select the device_type see {Device.device_types}
     # @return [Array<Object, Object>] in JSON format
     def self.devices(token, api_key, id, device_type)
@@ -55,7 +55,7 @@ module TACore
     # This method will permanently remove the venue from the API.
     # @param token [String] Oauth2 Token after Authentication
     # @param api_key [String] used from {Client.create}
-    # @param id [Integer] the id of the Venue from {Venue.create}
+    # @param key [String] the Key of the Venue from {Venue.create}
     # @return [Hash<{"destroy": false, Object}>] in JSON format
     def self.destroy(token, api_key, id)
       request(:delete, '/api/v1/venues/' + id.to_s, token, {:headers => {:client_api_key => api_key}})
