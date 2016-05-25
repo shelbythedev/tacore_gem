@@ -156,7 +156,7 @@ of Gateway device id&#39;s (Cirrus id&#39;s).</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#by_cirrus-class_method" title="by_cirrus (class method)">+ (Array&lt;Hash&gt;) <strong>by_cirrus</strong>(token, api_key, cirrus) </a>
+      <a href="#by_cirrus-class_method" title="by_cirrus (class method)">+ (Hash) <strong>by_cirrus</strong>(token, api_key, cirrus) </a>
     
 
     
@@ -217,7 +217,7 @@ of Gateway device id&#39;s (Cirrus id&#39;s).</p>
       <div class="method_details first">
   <h3 class="signature first" id="by_cirrus-class_method">
   
-    + (<tt>Array&lt;Hash&gt;</tt>) <strong>by_cirrus</strong>(token, api_key, cirrus) 
+    + (<tt>Hash</tt>) <strong>by_cirrus</strong>(token, api_key, cirrus) 
   
 
   
@@ -250,7 +250,20 @@ device_id&#39;s.</p>
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+        <p class="example_title"><div class='inline'>
+<p>Send a group of Cirrus Id&#39;s</p>
+</div></p>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_cirrus_ids'>cirrus_ids</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='int'>20</span><span class='comma'>,</span> <span class='int'>55</span><span class='comma'>,</span> <span class='int'>90</span><span class='rbracket'>]</span>
+<span class='id identifier rubyid_scans'>scans</span> <span class='op'>=</span> <span class='const'>TACore</span><span class='op'>::</span><span class='const'>Scan</span><span class='period'>.</span><span class='id identifier rubyid_by_cirrus'>by_cirrus</span><span class='lparen'>(</span><span class='const'>TACORE_TOKEN</span><span class='comma'>,</span> <span class='id identifier rubyid_client'>client</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>api_key</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_cirrus_ids'>cirrus_ids</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -304,7 +317,7 @@ device_id&#39;s.</p>
     <li>
       
       
-        <span class='type'>(<tt>Array&lt;Hash&gt;</tt>)</span>
+        <span class='type'>(<tt>Hash</tt>)</span>
       
       
       
@@ -323,12 +336,12 @@ device_id&#39;s.</p>
       <pre class="lines">
 
 
-14
-15
-16</pre>
+17
+18
+19</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacore/scan.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'lib/tacore/scan.rb', line 17</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_by_cirrus'>by_cirrus</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='comma'>,</span> <span class='id identifier rubyid_cirrus'>cirrus</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='symbol'>:post</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/api/v1/scans</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:body</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:devices</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_cirrus'>cirrus</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='symbol'>:headers</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:client_api_key</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='rbrace'>}</span><span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -343,7 +356,7 @@ device_id&#39;s.</p>
 </div>
 
     <div id="footer">
-  Generated on Tue May 24 23:31:54 2016 by
+  Generated on Wed May 25 11:09:28 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.1).
 </div>

@@ -65,7 +65,7 @@ module TACore
     # @param token [String] Oauth2 Token after Authentication
     # @param api_key [String] used from {Client.create}
     # @param key [String] the Key of the Venue from {Venue.create}
-    # @return [Array<Hash>] in JSON format
+    # @return [Hash] in JSON format
     def self.scans(token, api_key, id)
       request(:get, '/api/v1/venues/' + id + '/scans', token, {:headers => {:client_api_key => api_key}})
     end
