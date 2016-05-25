@@ -1,3 +1,6 @@
+# Version 3.4.1
+  - Bug fix for {Device.update} it now requires the Venue key and NOT the ID.
+
 # Version 3.4.0
   - Minor version bump added Scan methods {Scan.by_cirrus}
   - Added {Venue.scans}

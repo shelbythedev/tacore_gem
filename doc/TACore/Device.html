@@ -876,8 +876,8 @@ data.</p>
       
       <pre class="example code"><code><span class='comment'># Using the client api_key as client[&quot;api_key&quot;]
 </span><span class='comment'># Using the device id as device[&quot;id&quot;]
-</span><span class='comment'># Using the venue id as venue[&quot;id&quot;]
-</span><span class='id identifier rubyid_device'>device</span> <span class='op'>=</span> <span class='const'>TACore</span><span class='op'>::</span><span class='const'>Device</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='const'>TACORE_TOKEN</span><span class='comma'>,</span> <span class='id identifier rubyid_client'>client</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>api_key</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_device'>device</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>id</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='label'>venue_id:</span> <span class='id identifier rubyid_venue'>venue</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>id</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='rparen'>)</span></code></pre>
+</span><span class='comment'># Using the venue id as venue[&quot;key&quot;]
+</span><span class='id identifier rubyid_device'>device</span> <span class='op'>=</span> <span class='const'>TACore</span><span class='op'>::</span><span class='const'>Device</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='const'>TACORE_TOKEN</span><span class='comma'>,</span> <span class='id identifier rubyid_client'>client</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>api_key</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_device'>device</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>id</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='label'>venue_key:</span> <span class='id identifier rubyid_venue'>venue</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>key</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -991,7 +991,7 @@ data.</p>
 </div>
 
     <div id="footer">
-  Generated on Wed May 25 11:09:28 2016 by
+  Generated on Wed May 25 17:05:55 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.1).
 </div>

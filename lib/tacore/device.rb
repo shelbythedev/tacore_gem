@@ -24,8 +24,8 @@ module TACore
     # @example Update the Device venue id
     #    # Using the client api_key as client["api_key"]
     #    # Using the device id as device["id"]
-    #    # Using the venue id as venue["id"]
-    #    device = TACore::Device.update(TACORE_TOKEN, client["api_key"], device["id"], {venue_id: venue["id"]})
+    #    # Using the venue id as venue["key"]
+    #    device = TACore::Device.update(TACORE_TOKEN, client["api_key"], device["id"], {venue_key: venue["key"]})
     # @param token [String] Oauth2 Token after Authentication
     # @param api_key [String] used from {Client.create}
     # @param id [Integer] see {Device.unassigned} or {Device.all} to get the Device id

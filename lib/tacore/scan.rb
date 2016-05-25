@@ -8,6 +8,10 @@ module TACore
     # @example Send a group of Cirrus Id's
     #    cirrus_ids = [20, 55, 90]
     #    scans = TACore::Scan.by_cirrus(TACORE_TOKEN, client["api_key"], cirrus_ids)
+    #    scans.each do |scan|
+    #        puts scan
+    #        # => [7,10,55]
+    #    end
     # @note To avoid showing duplicate data it's best to use a group of device_id's.
     # @todo Notes and diagram how duplication occurs in scan data while not using a group.
     # @param token [String] Oauth2 Token after Authentication
