@@ -93,12 +93,8 @@ module TACore
   require 'tacore/client'
   require 'tacore/venue'
   require 'tacore/device'
+  require 'tacore/scan'
 
-  # => Scan class methods
-  # Proximity data in both raw and clean format per device and venue.
-  class Scan < Auth
-    # @todo Only document if needed
-  end
 
   class Test < Auth
     def initialize

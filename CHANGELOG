@@ -1,6 +1,10 @@
-# version 3.3.1
+# Version 3.4.0
+  - Minor version bump added Scan methods {Scan.by_cirrus}
+  - Added {Venue.scans}
+
+# Version 3.3.1
   - Cirrus API requires Venue Key and not ID. All Venue request now use KEY and not ID
-  
+
 # Version 3.3.0
   - Added Device.scans to retrieve scan data for the device ID.
   - Client, Venue, Device classes all moved to separate files lib/tacore/...
