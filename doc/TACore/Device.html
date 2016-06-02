@@ -109,7 +109,7 @@
 <h1 id="label-3E+Device+class+methods">&gt; Device class methods</h1>
 
 <p>All devices are included in this, to get a latest list of supported devices
-see <span class='object_link'><a href="#device_types-class_method" title="TACore::Device.device_types (method)">Device.device_types</a></span>.</p>
+see Device.device_types.</p>
 
 
   </div>
@@ -169,30 +169,6 @@ see <span class='object_link'><a href="#device_types-class_method" title="TACore
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#device_types-class_method" title="device_types (class method)">+ (Hash) <strong>device_types</strong> </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Show supported Device types.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
       <a href="#find-class_method" title="find (class method)">+ (Object) <strong>find</strong>(token, api_key, id) </a>
     
 
@@ -217,7 +193,7 @@ see <span class='object_link'><a href="#device_types-class_method" title="TACore
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#scans-class_method" title="scans (class method)">+ (Hash&lt;raw=false&gt; | Object&lt;raw=true&gt;) <strong>scans</strong>(token, api_key, id, raw = false) </a>
+      <a href="#scans-class_method" title="scans (class method)">+ (Hash&lt;raw=false&gt; | Object&lt;raw=true&gt;) <strong>scans</strong>(token, api_key, id, device_type, raw = false) </a>
     
 
     
@@ -233,6 +209,30 @@ see <span class='object_link'><a href="#device_types-class_method" title="TACore
   
     <span class="summary_desc"><div class='inline'>
 <p>Get scan data for this device ID.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#types-class_method" title="types (class method)">+ (Array) <strong>types</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Show supported Device types.</p>
 </div></span>
   
 </li>
@@ -387,7 +387,7 @@ see <span class='object_link'><a href="#device_types-class_method" title="TACore
       
         &mdash;
         <div class='inline'>
-<p>select the device_type see <span class='object_link'><a href="#device_types-class_method" title="TACore::Device.device_types (method)">device_types</a></span></p>
+<p>select the device_type see Device.device_types</p>
 </div>
       
     </li>
@@ -419,73 +419,15 @@ see <span class='object_link'><a href="#device_types-class_method" title="TACore
       <pre class="lines">
 
 
-51
-52
-53</pre>
+49
+50
+51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacore/device.rb', line 51</span>
+      <pre class="code"><span class="info file"># File 'lib/tacore/device.rb', line 49</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_all'>all</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='comma'>,</span> <span class='id identifier rubyid_device_type'>device_type</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='symbol'>:get</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/api/v1/devices/all/</span><span class='tstring_end'>&#39;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_device_type'>device_type</span><span class='comma'>,</span> <span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:headers</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:client_api_key</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='rbrace'>}</span><span class='rbrace'>}</span><span class='rparen'>)</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="device_types-class_method">
-  
-    + (<tt>Hash</tt>) <strong>device_types</strong> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Show supported Device types</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Hash</tt>)</span>
-      
-      
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-8
-9
-10
-11
-12</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/tacore/device.rb', line 8</span>
-
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_device_types'>device_types</span>
-  <span class='comment'># @todo This data will soon come from the API itself, and the output is subject to change.
-</span>  <span class='id identifier rubyid_devices'>devices</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='symbol'>:cirrus</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>cirrus</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
-            <span class='symbol'>:iris</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iris</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -588,12 +530,12 @@ see <span class='object_link'><a href="#device_types-class_method" title="TACore
       <pre class="lines">
 
 
-42
-43
-44</pre>
+40
+41
+42</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacore/device.rb', line 42</span>
+      <pre class="code"><span class="info file"># File 'lib/tacore/device.rb', line 40</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='comma'>,</span> <span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='symbol'>:get</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/api/v1/devices/</span><span class='tstring_end'>&#39;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_id'>id</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='comma'>,</span> <span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:headers</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:client_api_key</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='rbrace'>}</span><span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -606,7 +548,7 @@ see <span class='object_link'><a href="#device_types-class_method" title="TACore
       <div class="method_details ">
   <h3 class="signature " id="scans-class_method">
   
-    + (<tt>Hash&lt;raw=false&gt; | Object&lt;raw=true&gt;</tt>) <strong>scans</strong>(token, api_key, id, raw = false) 
+    + (<tt>Hash&lt;raw=false&gt; | Object&lt;raw=true&gt;</tt>) <strong>scans</strong>(token, api_key, id, device_type, raw = false) 
   
 
   
@@ -618,19 +560,83 @@ see <span class='object_link'><a href="#device_types-class_method" title="TACore
   <div class="note notetag">
     <strong>Note:</strong>
     <div class='inline'>
+<p>Overlook is a custom service built into the ThinAer Platform that allows us
+to determine accurate proximity along with a simplified output for API
+clients.</p>
+</div>
+  </div>
+
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
 <p>raw [Boolean] when set to `true` will give the last 10 records of scan
 data.</p>
+</div>
+  </div>
+
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>Always check the CHANGELOG for update notes</p>
 </div>
   </div>
 
 
 <p>Get scan data for this device ID.</p>
 
+<h2 id="label-Gateway+-28Cirrus-29+scan+device_type">Gateway (Cirrus) scan device_type</h2>
+<ul><li>
+<p>Key: The device ID given when making the request</p>
+</li><li>
+<p>Value: An array of device IDs that the device sees.</p>
+</li></ul>
+<hr>
+
+<h2 id="label-Asset+-28Iris-29+scan+device_type">Asset (Iris) scan device_type</h2>
+<ul><li>
+<p>device_id: The Gateway device id that sees the given device ID</p>
+</li><li>
+<p>last_movement: A UNIX timestap of the last time this device was seen by a
+new Gateway.</p>
+</li></ul>
+
+<h2 id="label-Scan+data+-28raw+-3D+false-29">Scan data (raw = false)</h2>
+
+<p>With the raw setting to false you will receive the most up to date and
+accurate data. Data coming from this source is cleaned with our custom
+built service called Overlook.</p>
+<hr>
+
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+        <p class="example_title"><div class='inline'>
+<p>Get asset (Iris) ids that the given device sees.</p>
+</div></p>
+      
+      <pre class="example code"><code><span class='comment'># Using the client api_key as client[&quot;api_key&quot;]
+</span><span class='comment'># Using the device id as device[&quot;id&quot;]
+</span><span class='id identifier rubyid_scans'>scans</span> <span class='op'>=</span> <span class='const'>TACore</span><span class='op'>::</span><span class='const'>Device</span><span class='period'>.</span><span class='id identifier rubyid_scans'>scans</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='comma'>,</span> <span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>cirrus</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='comment'># =&gt; {&quot;756&quot; =&gt; [22,35,621,503]}</span></code></pre>
+    
+      
+        <p class="example_title"><div class='inline'>
+<p>Get the device that sees this asset (Iris)</p>
+</div></p>
+      
+      <pre class="example code"><code><span class='comment'># Using the client api_key as client[&quot;api_key&quot;]
+</span><span class='comment'># Using the device id as device[&quot;id&quot;]
+</span><span class='id identifier rubyid_scan'>scan</span> <span class='op'>=</span> <span class='const'>TACore</span><span class='op'>::</span><span class='const'>Device</span><span class='period'>.</span><span class='id identifier rubyid_scans'>scans</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='comma'>,</span> <span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iris</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='comment'># =&gt; {&quot;device_id&quot; =&gt; 756, &quot;last_movement&quot; =&gt; 1464905199}</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -683,6 +689,22 @@ data.</p>
   
     <li>
       
+        <span class='name'>device_type</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>select the device_type see Device.device_types</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
         <span class='name'>raw</span>
       
       
@@ -714,6 +736,22 @@ data.</p>
     </li>
   
 </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>3.4.0</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -721,15 +759,69 @@ data.</p>
       <pre class="lines">
 
 
-62
-63
-64</pre>
+89
+90
+91</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacore/device.rb', line 62</span>
+      <pre class="code"><span class="info file"># File 'lib/tacore/device.rb', line 89</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_scans'>scans</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='comma'>,</span> <span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_raw'>raw</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='symbol'>:get</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/api/v1/devices/</span><span class='tstring_end'>&#39;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_id'>id</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/scans?raw=</span><span class='tstring_end'>&#39;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_raw'>raw</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='comma'>,</span> <span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:headers</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:client_api_key</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='rbrace'>}</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_scans'>scans</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='comma'>,</span> <span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_device_type'>device_type</span><span class='comma'>,</span> <span class='id identifier rubyid_raw'>raw</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='symbol'>:get</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/api/v1/devices/</span><span class='tstring_end'>&#39;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_id'>id</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/scans/</span><span class='tstring_end'>&#39;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_device_type'>device_type</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>?raw=</span><span class='tstring_end'>&#39;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_raw'>raw</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='comma'>,</span> <span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:headers</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:client_api_key</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='rbrace'>}</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="types-class_method">
+  
+    + (<tt>Array</tt>) <strong>types</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Show supported Device types</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+8
+9
+10</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/tacore/device.rb', line 8</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_types'>types</span>
+  <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='symbol'>:get</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/api/v1/devices/types</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:headers</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:client_api_key</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='rbrace'>}</span><span class='rbrace'>}</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -800,7 +892,7 @@ data.</p>
       
         &mdash;
         <div class='inline'>
-<p>select the device_type see <span class='object_link'><a href="#device_types-class_method" title="TACore::Device.device_types (method)">device_types</a></span></p>
+<p>select the device_type see Device.device_types</p>
 </div>
       
     </li>
@@ -832,12 +924,12 @@ data.</p>
       <pre class="lines">
 
 
-19
-20
-21</pre>
+17
+18
+19</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacore/device.rb', line 19</span>
+      <pre class="code"><span class="info file"># File 'lib/tacore/device.rb', line 17</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_unassigned'>unassigned</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='comma'>,</span> <span class='id identifier rubyid_device_type'>device_type</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='symbol'>:get</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/api/v1/devices/unassigned/</span><span class='tstring_end'>&#39;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_device_type'>device_type</span><span class='comma'>,</span> <span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:headers</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:client_api_key</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='rbrace'>}</span><span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -971,12 +1063,12 @@ data.</p>
       <pre class="lines">
 
 
-34
-35
-36</pre>
+32
+33
+34</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacore/device.rb', line 34</span>
+      <pre class="code"><span class="info file"># File 'lib/tacore/device.rb', line 32</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='comma'>,</span> <span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_device'>device</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='symbol'>:put</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/api/v1/devices/</span><span class='tstring_end'>&#39;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_id'>id</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='comma'>,</span> <span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:body</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:device</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_device'>device</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='symbol'>:headers</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:client_api_key</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='rbrace'>}</span><span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -991,7 +1083,7 @@ data.</p>
 </div>
 
     <div id="footer">
-  Generated on Wed May 25 17:05:55 2016 by
+  Generated on Thu Jun  2 17:34:51 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.1).
 </div>

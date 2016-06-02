@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    TACore (3.2.0)
+    TACore (3.4.1)
       oauth2 (~> 1.1.0)
 
 GEM

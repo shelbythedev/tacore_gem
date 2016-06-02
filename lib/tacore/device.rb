@@ -4,11 +4,9 @@ module TACore
   class Device < Auth
 
     # Show supported Device types
-    # @return [Hash]
-    def self.device_types
-      # @todo This data will soon come from the API itself, and the output is subject to change.
-      devices = {:cirrus => ["cirrus"],
-                :iris => ["iris"]}
+    # @return [Array]
+    def self.types
+      request(:get, '/api/v1/devices/types', token, {:headers => {:client_api_key => api_key}})
     end
 
     # Show all devices that DO NOT have a venue_id set
@@ -53,14 +51,43 @@ module TACore
     end
 
     # Get scan data for this device ID.
+    # == Gateway (Cirrus) scan device_type
+    # * Key: The device ID given when making the request
+    # * Value: An array of device IDs that the device sees.
+    # @example Get asset (Iris) ids that the given device sees.
+    #    # Using the client api_key as client["api_key"]
+    #    # Using the device id as device["id"]
+    #    scans = TACore::Device.scans(token, api_key, id, "cirrus")
+    #    # => {"756" => [22,35,621,503]}
+    #
+    # -------------------
+    #
+    # == Asset (Iris) scan device_type
+    # * device_id: The Gateway device id that sees the given device ID
+    # * last_movement: A UNIX timestap of the last time this device was seen by a new Gateway.
+    # @example Get the device that sees this asset (Iris)
+    #    # Using the client api_key as client["api_key"]
+    #    # Using the device id as device["id"]
+    #    scan = TACore::Device.scans(token, api_key, id, "iris")
+    #    # => {"device_id" => 756, "last_movement" => 1464905199}
+    #
+    # == Scan data (raw = false)
+    # With the raw setting to false you will receive the most up to date and accurate data. Data coming from this source is cleaned with our custom built service called Overlook.
+    #
+    # -------------------
+    #
+    # @note Overlook is a custom service built into the ThinAer Platform that allows us to determine accurate proximity along with a simplified output for API clients.
     # @param token [String] Oauth2 Token after Authentication
     # @param api_key [String] used from {Client.create}
     # @param id [Integer] see {Device.unassigned} or {Device.all} to get the Device id
+    # @param device_type [String] select the device_type see {Device.device_types}
     # @param raw [Boolean]
     # @return [Hash<raw=false> | Object<raw=true>] in JSON format
     # @note raw [Boolean] when set to `true` will give the last 10 records of scan data.
-    def self.scans(token, api_key, id, raw = false)
-      request(:get, '/api/v1/devices/' + id.to_s + '/scans?raw=' + raw.to_s, token, {:headers => {:client_api_key => api_key}})
+    # @since 3.4.0
+    # @note Always check the CHANGELOG for update notes
+    def self.scans(token, api_key, id, device_type, raw = false)
+      request(:get, '/api/v1/devices/' + id.to_s + '/scans/' + device_type + '?raw=' + raw.to_s, token, {:headers => {:client_api_key => api_key}})
     end
 
   end

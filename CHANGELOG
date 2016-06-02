@@ -1,3 +1,7 @@
+# Version 3.4.2
+  - {Device.types} is now an API call for the current device types.
+  - {Device.scans} now requires device_type
+  
 # Version 3.4.1
   - Bug fix for {Device.update} it now requires the Venue key and NOT the ID.
 
