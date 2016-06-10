@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>
-  Class: TACore::Scan
+  Class: TACore::Movement
   
     &mdash; Documentation by YARD 0.8.7.6
   
@@ -17,7 +17,7 @@
 <script type="text/javascript" charset="utf-8">
   hasFrames = window.top.frames.main ? true : false;
   relpath = '../';
-  framesUrl = "../frames.html#!TACore/Scan.html";
+  framesUrl = "../frames.html#!TACore/Movement.html";
 </script>
 
 
@@ -31,10 +31,10 @@
     <div id="header">
       <div id="menu">
   
-    <a href="../_index.html">Index (S)</a> &raquo;
+    <a href="../_index.html">Index (M)</a> &raquo;
     <span class='title'><span class='object_link'><a href="../TACore.html" title="TACore (module)">TACore</a></span></span>
      &raquo; 
-    <span class="title">Scan</span>
+    <span class="title">Movement</span>
   
 
   <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
@@ -63,7 +63,7 @@
 
     <iframe id="search_frame"></iframe>
 
-    <div id="content"><h1>Class: TACore::Scan
+    <div id="content"><h1>Class: TACore::Movement
   
   
   
@@ -82,7 +82,7 @@
           
             <li class="next"><span class='object_link'><a href="Auth.html" title="TACore::Auth (class)">Auth</a></span></li>
           
-            <li class="next">TACore::Scan</li>
+            <li class="next">TACore::Movement</li>
           
         </ul>
         <a href="#" class="inheritanceTree">show all</a>
@@ -98,7 +98,7 @@
   
   
     <dt class="r2 last">Defined in:</dt>
-    <dd class="r2 last">lib/tacore/scan.rb</dd>
+    <dd class="r2 last">lib/tacore/movement.rb</dd>
   
 </dl>
 <div class="clear"></div>
@@ -106,21 +106,10 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>A group should not include a “beacon” (asset tag) / Iris id, only Gateway
-device id&#39;s should be used to search for proximity data. Using an Iris
-ID will result in a nil or empty return.</p>
-</div>
-  </div>
+<h1 id="label-3E+Device+Movement+information">&gt; Device Movement information</h1>
 
-
-<h1 id="label-3E+Scan+-2F+Proximity+Data.">&gt; Scan / Proximity Data.</h1>
-
-<p>The scan data returned is filtered for duplicates along with ordered for
-what device is most near in a given group. A group is defined by an array
-of Gateway device id&#39;s (Cirrus id&#39;s).</p>
+<p>The Movement class allows you to see movement information from both the
+Gateway and Iris device.</p>
 
 
   </div>
@@ -156,7 +145,7 @@ of Gateway device id&#39;s (Cirrus id&#39;s).</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#by_cirrus-class_method" title="by_cirrus (class method)">+ (Hash) <strong>by_cirrus</strong>(token, api_key, cirrus) </a>
+      <a href="#by_device-class_method" title="by_device (class method)">+ (Hash) <strong>by_device</strong>(token, api_key, device_id) </a>
     
 
     
@@ -170,9 +159,7 @@ of Gateway device id&#39;s (Cirrus id&#39;s).</p>
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>This will return all scan data for a group or single Cirrus ID used.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -215,9 +202,9 @@ of Gateway device id&#39;s (Cirrus id&#39;s).</p>
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="by_cirrus-class_method">
+  <h3 class="signature first" id="by_device-class_method">
   
-    + (<tt>Hash</tt>) <strong>by_cirrus</strong>(token, api_key, cirrus) 
+    + (<tt>Hash</tt>) <strong>by_device</strong>(token, api_key, device_id) 
   
 
   
@@ -226,26 +213,6 @@ of Gateway device id&#39;s (Cirrus id&#39;s).</p>
 </h3><div class="docstring">
   <div class="discussion">
     
-  <div class="note todo">
-    <strong>TODO:</strong>
-    <div class='inline'>
-<p>Notes and diagram how duplication occurs in scan data while not using a
-group.</p>
-</div>
-  </div>
-
-
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>To avoid showing duplicate data it&#39;s best to use a group of
-device_id&#39;s.</p>
-</div>
-  </div>
-
-
-<p>This will return all scan data for a group or single Cirrus ID used.</p>
-
 
   </div>
 </div>
@@ -256,15 +223,20 @@ device_id&#39;s.</p>
     
       
         <p class="example_title"><div class='inline'>
-<p>Send a group of Cirrus Id&#39;s</p>
+<p>Select all movement data by a Gateway ID</p>
 </div></p>
       
-      <pre class="example code"><code><span class='id identifier rubyid_cirrus_ids'>cirrus_ids</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='int'>20</span><span class='comma'>,</span> <span class='int'>55</span><span class='comma'>,</span> <span class='int'>90</span><span class='rbracket'>]</span>
-<span class='id identifier rubyid_scans'>scans</span> <span class='op'>=</span> <span class='const'>TACore</span><span class='op'>::</span><span class='const'>Scan</span><span class='period'>.</span><span class='id identifier rubyid_by_cirrus'>by_cirrus</span><span class='lparen'>(</span><span class='const'>TACORE_TOKEN</span><span class='comma'>,</span> <span class='id identifier rubyid_client'>client</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>api_key</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_cirrus_ids'>cirrus_ids</span><span class='rparen'>)</span>
-<span class='id identifier rubyid_scans'>scans</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_scan'>scan</span><span class='op'>|</span>
-    <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_scan'>scan</span>
-    <span class='comment'># =&gt; [7,10,55]
-</span><span class='kw'>end</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_movements'>movements</span> <span class='op'>=</span> <span class='const'>TACore</span><span class='op'>::</span><span class='const'>Movement</span><span class='period'>.</span><span class='id identifier rubyid_by_device'>by_device</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='comma'>,</span> <span class='int'>6</span><span class='rparen'>)</span>
+<span class='comment'># =&gt; [{&quot;iris_id&quot;=&gt;1, &quot;time_spent&quot;=&gt;&quot;0.52&quot;, &quot;created_at&quot;=&gt;&quot;2016-06-10T01:05:16.000Z&quot;}, {&quot;iris_id&quot;=&gt;2, &quot;time_spent&quot;=&gt;&quot;2.08&quot;, &quot;created_at&quot;=&gt;&quot;2016-06-10T01:05:19.000Z&quot;}]
+</span><span class='comment'># @param time_spent [Float] This is the time spent at the Gateway device in minutes.</span></code></pre>
+    
+      
+        <p class="example_title"><div class='inline'>
+<p>Select the movement data from an Asset Beacon ID</p>
+</div></p>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_movements'>movements</span> <span class='op'>=</span> <span class='const'>TACore</span><span class='op'>::</span><span class='const'>Movement</span><span class='period'>.</span><span class='id identifier rubyid_by_device'>by_device</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='comma'>,</span> <span class='int'>1</span><span class='rparen'>)</span>
+<span class='comment'># =&gt; [{&quot;cirrus_id&quot;=&gt;6, &quot;time_spent&quot;=&gt;&quot;0.52&quot;, &quot;created_at&quot;=&gt;&quot;2016-06-10T01:05:16.000Z&quot;}]</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -304,12 +276,17 @@ device_id&#39;s.</p>
   
     <li>
       
-        <span class='name'>cirrus</span>
+        <span class='name'>device_id</span>
       
       
-        <span class='type'>(<tt>Array&lt;Integer&gt;</tt>, <tt>Integer</tt>)</span>
+        <span class='type'>(<tt>Integer</tt>)</span>
       
       
+      
+        &mdash;
+        <div class='inline'>
+<p>This can be any device_id (Gateway or Asset Beacon)</p>
+</div>
       
     </li>
   
@@ -325,11 +302,6 @@ device_id&#39;s.</p>
       
       
       
-        &mdash;
-        <div class='inline'>
-<p>in JSON format</p>
-</div>
-      
     </li>
   
 </ul>
@@ -340,15 +312,15 @@ device_id&#39;s.</p>
       <pre class="lines">
 
 
-21
-22
-23</pre>
+17
+18
+19</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacore/scan.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'lib/tacore/movement.rb', line 17</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_by_cirrus'>by_cirrus</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='comma'>,</span> <span class='id identifier rubyid_cirrus'>cirrus</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='symbol'>:post</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/api/v1/scans</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:body</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:devices</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_cirrus'>cirrus</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='symbol'>:headers</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:client_api_key</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='rbrace'>}</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_by_device'>by_device</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='comma'>,</span> <span class='id identifier rubyid_device_id'>device_id</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='symbol'>:get</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/api/v1/devices/</span><span class='tstring_end'>&#39;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_device_id'>device_id</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/movement</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:headers</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:client_api_key</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='rbrace'>}</span><span class='rbrace'>}</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -360,7 +332,7 @@ device_id&#39;s.</p>
 </div>
 
     <div id="footer">
-  Generated on Thu Jun  9 20:59:45 2016 by
+  Generated on Thu Jun  9 20:59:46 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.1).
 </div>

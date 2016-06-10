@@ -2,5 +2,6 @@ lib/tacore.rb 6f3ea2005a69e8375e805e36ddbfb904eefe67f6
 lib/exceptions.rb 0ad5cf8d26beca8e00a49181ae97a3a660d5059a
 lib/tacore/scan.rb e0791dc446977c57e00e81e5dbf5f1b0a0937349
 lib/tacore/venue.rb 3ddd5e36d32db2571ca7f513d610712da4ea0c34
-lib/tacore/client.rb 8280f73d164e2f0464038947b5c515f317f9c801
 lib/tacore/device.rb 3a20c5e1c5ecbe11acbf02f7f314dcdb7fb9d50f
+lib/tacore/client.rb 8280f73d164e2f0464038947b5c515f317f9c801
+lib/tacore/movement.rb d27a3c3412b4a76e49a53dcf53fff861159a4ce3

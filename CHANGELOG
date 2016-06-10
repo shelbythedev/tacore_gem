@@ -1,13 +1,17 @@
+# Version 3.5.1
+  - Added {TACore::Movement} class to support the latest Cirrus API / Overlook Movement data.
+  - {TACore::Movement.by_device} added to select movement data by device ID.
+
 # Version 3.4.2
-  - {Device.types} is now an API call for the current device types.
-  - {Device.scans} now requires device_type
-  
+  - {TACore::Device.types} is now an API call for the current device types.
+  - {TACore::Device.scans} now requires device_type
+
 # Version 3.4.1
   - Bug fix for {Device.update} it now requires the Venue key and NOT the ID.
 
 # Version 3.4.0
-  - Minor version bump added Scan methods {Scan.by_cirrus}
-  - Added {Venue.scans}
+  - Minor version bump added Scan methods {TACore::Scan.by_cirrus}
+  - Added {TACore::Venue.scans}
 
 # Version 3.3.1
   - Cirrus API requires Venue Key and not ID. All Venue request now use KEY and not ID
