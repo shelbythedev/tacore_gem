@@ -15,7 +15,7 @@ module TACore
     # @param device_id [Integer] This can be any device_id (Gateway or Asset Beacon)
     # @return [Hash]
     def self.by_device(token, api_key, device_id)
-      request(:get, '/api/v1/devices/' + device_id.to_s + '/movement', token, {:headers => {:client_api_key => api_key}})
+      request(:get, '/api/v1/devices/' + device_id.to_s + '/movements', token, {:headers => {:client_api_key => api_key}})
     end
   end
 end

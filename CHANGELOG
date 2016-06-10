@@ -1,3 +1,6 @@
+# Version 3.5.2
+  - Bug fix for {TACore::Movement.by_device} path
+  
 # Version 3.5.1
   - Added {TACore::Movement} class to support the latest Cirrus API / Overlook Movement data.
   - {TACore::Movement.by_device} added to select movement data by device ID.
