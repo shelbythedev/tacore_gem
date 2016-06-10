@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    TACore (3.4.2)
+    TACore (3.5.2)
       oauth2 (~> 1.1.0)
 
 GEM
@@ -43,4 +43,4 @@ DEPENDENCIES
   rspec
 
 BUNDLED WITH
-   1.11.2
+   1.12.4
