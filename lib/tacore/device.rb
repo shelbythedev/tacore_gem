@@ -4,9 +4,10 @@ module TACore
   class Device < Auth
 
     # Show supported Device types
+    # @param token [String] Oauth2 Token after Authentication
     # @return [Array]
-    def self.types
-      request(:get, '/api/v1/devices/types', token, {:headers => {:client_api_key => api_key}})
+    def self.types(token)
+      request(:get, '/api/v1/devices/types', token)
     end
 
     # Show all devices that DO NOT have a venue_id set
