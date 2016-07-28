@@ -4,4 +4,4 @@ lib/tacore/scan.rb e0791dc446977c57e00e81e5dbf5f1b0a0937349
 lib/tacore/venue.rb 3ddd5e36d32db2571ca7f513d610712da4ea0c34
 lib/tacore/device.rb 48bd722d9e7a67e97daaa6b52c97d4dffaccd828
 lib/tacore/client.rb 8280f73d164e2f0464038947b5c515f317f9c801
-lib/tacore/movement.rb defd187e807c4d3491b331bc00b07b3fc56e2850
+lib/tacore/movement.rb c85d32db19dc6001c54d789734792340f77a131c

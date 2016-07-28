@@ -17,5 +17,23 @@ module TACore
     def self.by_device(token, api_key, device_id)
       request(:get, '/api/v1/devices/' + device_id.to_s + '/movements', token, {:headers => {:client_api_key => api_key}})
     end
+
+    # @param token [String] Oauth2 Token after Authentication
+    # @param api_key [String] used from {Client.create}
+    # @param device_id [Integer] This is only a Gateway ID
+    # @param id [Integer] This is the movement id obtained from {Movement.by_device}
+    # @param movement [Object]
+    def self.update(token, api_key, device_id, id, movement = {})
+      request(:put, '/api/v1/devices/' + device_id.to_s + '/movements/' + id.to_s, token, {:body => {:movement => movement}, :headers => {:client_api_key => api_key}})
+    end
+
+    # @param token [String] Oauth2 Token after Authentication
+    # @param api_key [String] used from {Client.create}
+    # @param device_id [Integer] This is only a Gateway ID
+    # @param id [Integer] This is the movement id obtained from {Movement.by_device}
+    # @param movement [Object]
+    def self.destroy(token, api_key, device_id, id)
+      request(:delete, '/api/v1/devices/' + device_id.to_s + '/movements/' + id.to_s, token, {:headers => {:client_api_key => api_key}})
+    end
   end
 end
