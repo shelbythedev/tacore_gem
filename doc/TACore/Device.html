@@ -217,7 +217,7 @@ see Device.device_types.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#types-class_method" title="types (class method)">+ (Array) <strong>types</strong> </a>
+      <a href="#types-class_method" title="types (class method)">+ (Array) <strong>types</strong>(token) </a>
     
 
     
@@ -419,12 +419,12 @@ see Device.device_types.</p>
       <pre class="lines">
 
 
-49
 50
-51</pre>
+51
+52</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacore/device.rb', line 49</span>
+      <pre class="code"><span class="info file"># File 'lib/tacore/device.rb', line 50</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_all'>all</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='comma'>,</span> <span class='id identifier rubyid_device_type'>device_type</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='symbol'>:get</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/api/v1/devices/all/</span><span class='tstring_end'>&#39;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_device_type'>device_type</span><span class='comma'>,</span> <span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:headers</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:client_api_key</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='rbrace'>}</span><span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -530,12 +530,12 @@ see Device.device_types.</p>
       <pre class="lines">
 
 
-40
 41
-42</pre>
+42
+43</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacore/device.rb', line 40</span>
+      <pre class="code"><span class="info file"># File 'lib/tacore/device.rb', line 41</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='comma'>,</span> <span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='symbol'>:get</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/api/v1/devices/</span><span class='tstring_end'>&#39;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_id'>id</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='comma'>,</span> <span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:headers</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:client_api_key</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='rbrace'>}</span><span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -759,12 +759,12 @@ built service called Overlook.</p>
       <pre class="lines">
 
 
-89
 90
-91</pre>
+91
+92</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacore/device.rb', line 89</span>
+      <pre class="code"><span class="info file"># File 'lib/tacore/device.rb', line 90</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_scans'>scans</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='comma'>,</span> <span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_device_type'>device_type</span><span class='comma'>,</span> <span class='id identifier rubyid_raw'>raw</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='symbol'>:get</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/api/v1/devices/</span><span class='tstring_end'>&#39;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_id'>id</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/scans/</span><span class='tstring_end'>&#39;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_device_type'>device_type</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>?raw=</span><span class='tstring_end'>&#39;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_raw'>raw</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='comma'>,</span> <span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:headers</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:client_api_key</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='rbrace'>}</span><span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -777,7 +777,7 @@ built service called Overlook.</p>
       <div class="method_details ">
   <h3 class="signature " id="types-class_method">
   
-    + (<tt>Array</tt>) <strong>types</strong> 
+    + (<tt>Array</tt>) <strong>types</strong>(token) 
   
 
   
@@ -792,7 +792,27 @@ built service called Overlook.</p>
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>token</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Oauth2 Token after Authentication</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -813,15 +833,15 @@ built service called Overlook.</p>
       <pre class="lines">
 
 
-8
 9
-10</pre>
+10
+11</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacore/device.rb', line 8</span>
+      <pre class="code"><span class="info file"># File 'lib/tacore/device.rb', line 9</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_types'>types</span>
-  <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='symbol'>:get</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/api/v1/devices/types</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:headers</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:client_api_key</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='rbrace'>}</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_types'>types</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='symbol'>:get</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/api/v1/devices/types</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_token'>token</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -924,12 +944,12 @@ built service called Overlook.</p>
       <pre class="lines">
 
 
-17
 18
-19</pre>
+19
+20</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacore/device.rb', line 17</span>
+      <pre class="code"><span class="info file"># File 'lib/tacore/device.rb', line 18</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_unassigned'>unassigned</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='comma'>,</span> <span class='id identifier rubyid_device_type'>device_type</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='symbol'>:get</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/api/v1/devices/unassigned/</span><span class='tstring_end'>&#39;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_device_type'>device_type</span><span class='comma'>,</span> <span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:headers</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:client_api_key</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='rbrace'>}</span><span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -1063,12 +1083,12 @@ built service called Overlook.</p>
       <pre class="lines">
 
 
-32
 33
-34</pre>
+34
+35</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacore/device.rb', line 32</span>
+      <pre class="code"><span class="info file"># File 'lib/tacore/device.rb', line 33</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='comma'>,</span> <span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_device'>device</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='symbol'>:put</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/api/v1/devices/</span><span class='tstring_end'>&#39;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_id'>id</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='comma'>,</span> <span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:body</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:device</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_device'>device</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='symbol'>:headers</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:client_api_key</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='rbrace'>}</span><span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -1083,7 +1103,7 @@ built service called Overlook.</p>
 </div>
 
     <div id="footer">
-  Generated on Thu Jun  9 20:59:46 2016 by
+  Generated on Mon Jun 13 12:26:30 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.1).
 </div>
