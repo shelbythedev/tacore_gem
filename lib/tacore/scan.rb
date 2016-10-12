@@ -21,6 +21,13 @@ module TACore
     def self.by_cirrus(token, api_key, cirrus)
       request(:post, '/api/v1/scans', token, {:body => {:devices => cirrus}, :headers => {:client_api_key => api_key}})
     end
+
+    # @param token [String] Oauth2 Token after Authentication
+    # @param api_key [String] used from {Client.create}
+    # @return [Hash] in JSON format
+    def self.all(token, api_key)
+      request(:get, '/api/v1/scans/all', token, {:headers => {:client_api_key => api_key}})
+    end
   end
 
 end

@@ -35,5 +35,12 @@ module TACore
     def self.destroy(token, api_key, device_id, id)
       request(:delete, '/api/v1/devices/' + device_id.to_s + '/movements/' + id.to_s, token, {:headers => {:client_api_key => api_key}})
     end
+
+    # @param token [String] Oauth2 Token after Authentication
+    # @param api_key [String] used from {Client.create}
+    # @return [Hash]
+    def self.all(token, api_key)
+      request(:get, 'api/v1/movements/all', token, {:headers => {:client_api_key => api_key}})
+    end
   end
 end
