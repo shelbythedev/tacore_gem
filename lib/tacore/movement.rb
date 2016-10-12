@@ -37,9 +37,9 @@ module TACore
     end
 
     # @param token [String] Oauth2 Token after Authentication
-    # @return [Hash]
-    def self.all(token)
-      request(:get, 'api/v1/movements/all', token)
+    # @return [Hash] in JSON format
+    def self.all(token, api_key)
+      request(:get, '/api/v1/movements/all', token, {:headers => {:client_api_key => api_key}})
     end
   end
 end
