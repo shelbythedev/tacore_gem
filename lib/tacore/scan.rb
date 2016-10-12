@@ -24,7 +24,7 @@ module TACore
 
     # @param token [String] Oauth2 Token after Authentication
     # @return [Hash] in JSON format
-    def self.all(token, api_key)
+    def self.all(token)
       request(:get, '/api/v1/scans/all', token)
     end
   end
