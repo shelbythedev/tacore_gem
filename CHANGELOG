@@ -1,7 +1,23 @@
-# Verison 3.5.6
+# Version 3.6.0
+  - Added api_key for {TACore::Scan.all}
+  - Added api_key for {TACore::Movement.all}
+
+# Version 3.5.9
+  - Bug fix for {TACore::Scan.all}
+  - Bug fix for {TACore::Movement.all}
+
+# Version 3.5.8
+  - Bug with {TACore::Scan.all} to be fixed
+  - Bug with {TACore::Movement.all} to be fixed
+
+# Version 3.5.7
+  - Added All Method for Scans {TACore::Scans.all}
+  - Added All Method for Movements {TACore::Movement.all}
+
+# Version 3.5.6
   - Added Update Method {TACore::Movement.update}
   - Added Destroy Method {TACore::Movement.destroy}
-  
+
 # Version 3.5.5
   - Bug with {TACore::Device.types} now takes a token.
 
