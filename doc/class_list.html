@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
       <link rel="stylesheet" href="css/full_list.css" type="text/css" media="screen" charset="utf-8" />
     
@@ -19,31 +19,38 @@
     <base id="base_target" target="_parent" />
   </head>
   <body>
+    <script type="text/javascript" charset="utf-8">
+      var hasFrames = false;
+      try {
+        hasFrames = window.top.frames.main ? true : false;
+      } catch (e) { }
+      if (hasFrames) {
+        document.getElementById('base_target').target = 'main';
+        document.body.className = 'frames';
+      }
+    </script>
     <div id="content">
-      <div class="fixed_header">
-        <h1 id="full_list_header">Class List</h1>
-        <div id="full_list_nav">
-          
-            <span><a target="_self" href="class_list.html">
-              Classes
-            </a></span>
-          
-            <span><a target="_self" href="method_list.html">
-              Methods
-            </a></span>
-          
-            <span><a target="_self" href="file_list.html">
-              Files
-            </a></span>
-          
-        </div>
-
-        <div id="search">Search: <input type="text" /></div>
+      <h1 id="full_list_header">Class List</h1>
+      <div id="nav">
+        
+          <span><a target="_self" href="class_list.html">
+            Classes
+          </a></span>
+        
+          <span><a target="_self" href="method_list.html">
+            Methods
+          </a></span>
+        
+          <span><a target="_self" href="file_list.html">
+            Files
+          </a></span>
+        
       </div>
+      <div id="search">Search: <input type="text" /></div>
 
       <ul id="full_list" class="class">
-        <li id="object_" class="odd"><div class="item" style="padding-left:30px"><span class='object_link'><a href="top-level-namespace.html" title="Top Level Namespace (root)">Top Level Namespace</a></span></div></li>
-<li id='object_TACore' class='even'><div class='item' style='padding-left:30px'><a class='toggle'></a> <span class='object_link'><a href="TACore.html" title="TACore (module)">TACore</a></span><small class='search_info'>Top Level Namespace</small></div><ul><li id='object_TACore::Auth' class='collapsed odd'><div class='item' style='padding-left:45px'><span class='object_link'><a href="TACore/Auth.html" title="TACore::Auth (class)">Auth</a></span> &lt; Configuration<small class='search_info'>TACore</small></div></li><li id='object_TACore::AuthenticationError' class='collapsed even'><div class='item' style='padding-left:45px'><span class='object_link'><a href="TACore/AuthenticationError.html" title="TACore::AuthenticationError (class)">AuthenticationError</a></span> &lt; StandardError<small class='search_info'>TACore</small></div></li><li id='object_TACore::Client' class='collapsed odd'><div class='item' style='padding-left:45px'><span class='object_link'><a href="TACore/Client.html" title="TACore::Client (class)">Client</a></span> &lt; Auth<small class='search_info'>TACore</small></div></li><li id='object_TACore::Configuration' class='collapsed even'><div class='item' style='padding-left:45px'><span class='object_link'><a href="TACore/Configuration.html" title="TACore::Configuration (class)">Configuration</a></span> &lt; Object<small class='search_info'>TACore</small></div></li><li id='object_TACore::Device' class='collapsed odd'><div class='item' style='padding-left:45px'><span class='object_link'><a href="TACore/Device.html" title="TACore::Device (class)">Device</a></span> &lt; Auth<small class='search_info'>TACore</small></div></li><li id='object_TACore::Movement' class='collapsed even'><div class='item' style='padding-left:45px'><span class='object_link'><a href="TACore/Movement.html" title="TACore::Movement (class)">Movement</a></span> &lt; Auth<small class='search_info'>TACore</small></div></li><li id='object_TACore::Scan' class='collapsed odd'><div class='item' style='padding-left:45px'><span class='object_link'><a href="TACore/Scan.html" title="TACore::Scan (class)">Scan</a></span> &lt; Auth<small class='search_info'>TACore</small></div></li><li id='object_TACore::Test' class='collapsed even'><div class='item' style='padding-left:45px'><span class='object_link'><a href="TACore/Test.html" title="TACore::Test (class)">Test</a></span> &lt; Auth<small class='search_info'>TACore</small></div></li><li id='object_TACore::TokenError' class='collapsed odd'><div class='item' style='padding-left:45px'><span class='object_link'><a href="TACore/TokenError.html" title="TACore::TokenError (class)">TokenError</a></span> &lt; AuthenticationError<small class='search_info'>TACore</small></div></li><li id='object_TACore::Venue' class='collapsed even'><div class='item' style='padding-left:45px'><span class='object_link'><a href="TACore/Venue.html" title="TACore::Venue (class)">Venue</a></span> &lt; Auth<small class='search_info'>TACore</small></div></li></ul></li>
+        <li><span class='object_link'><a href="top-level-namespace.html" title="Top Level Namespace (root)">Top Level Namespace</a></span></li>
+<li><a class='toggle'></a> <span class='object_link'><a href="TACore.html" title="TACore (module)">TACore</a></span><small class='search_info'>Top Level Namespace</small></li><ul><li><span class='object_link'><a href="TACore/Auth.html" title="TACore::Auth (class)">Auth</a></span> &lt; Configuration<small class='search_info'>TACore</small></li><li><span class='object_link'><a href="TACore/AuthenticationError.html" title="TACore::AuthenticationError (class)">AuthenticationError</a></span> &lt; StandardError<small class='search_info'>TACore</small></li><li><span class='object_link'><a href="TACore/Client.html" title="TACore::Client (class)">Client</a></span> &lt; Auth<small class='search_info'>TACore</small></li><li><span class='object_link'><a href="TACore/Configuration.html" title="TACore::Configuration (class)">Configuration</a></span> &lt; Object<small class='search_info'>TACore</small></li><li><span class='object_link'><a href="TACore/Device.html" title="TACore::Device (class)">Device</a></span> &lt; Auth<small class='search_info'>TACore</small></li><li><span class='object_link'><a href="TACore/Movement.html" title="TACore::Movement (class)">Movement</a></span> &lt; Auth<small class='search_info'>TACore</small></li><li><span class='object_link'><a href="TACore/Scan.html" title="TACore::Scan (class)">Scan</a></span> &lt; Auth<small class='search_info'>TACore</small></li><li><span class='object_link'><a href="TACore/Test.html" title="TACore::Test (class)">Test</a></span> &lt; Auth<small class='search_info'>TACore</small></li><li><span class='object_link'><a href="TACore/TokenError.html" title="TACore::TokenError (class)">TokenError</a></span> &lt; AuthenticationError<small class='search_info'>TACore</small></li><li><span class='object_link'><a href="TACore/Venue.html" title="TACore::Venue (class)">Venue</a></span> &lt; Auth<small class='search_info'>TACore</small></li></ul>
 
       </ul>
     </div>
