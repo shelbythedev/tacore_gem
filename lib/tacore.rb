@@ -57,15 +57,16 @@ module TACore
     attr_accessor :token
     attr_accessor :client
 
-    def initialize
-      @client = OAuth2::Client.new(TACore.configuration.client_id, TACore.configuration.client_secret, :site => TACore.configuration.api_url)
-    end
+    # def initialize
+    #   @client = OAuth2::Client.new(TACore.configuration.client_id, TACore.configuration.client_secret, :site => TACore.configuration.api_url)
+    # end
 
     # Used to retrive the TOKEN after Authentication
     # @return [Oauth2 Object]
     def self.login
       core = TACore::Auth.new
-      @@token = core.client.client_credentials.get_token
+      # use rest-client for auth post to get token
+      @@token =
       if @@token.nil?
         raise "Authentication Failed"
       end
