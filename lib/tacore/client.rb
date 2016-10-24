@@ -21,7 +21,7 @@ module TACore
     # @return [Object] in JSON format - the new client
     # @note The new Client will be owned by the application creating it.
     def self.create(token, client = {})
-      request(:post, '/client', {headers: {"token": token}, body: cient})
+      request(:post, '/client', {headers: {"token": token}, body: client})
     end
 
     # Get details on a specific client by api_key
