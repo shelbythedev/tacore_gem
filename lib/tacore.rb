@@ -93,7 +93,7 @@ module TACore
       rescue => e
         raise TACore::TokenError.new "#{e.message}"
       end
-    # end
+    end
 
   end
 
