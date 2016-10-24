@@ -67,11 +67,13 @@ module TACore
       core = TACore::Auth.new
       # use rest-client for auth post to get token
       @@token = RestClient::Request.execute(method: :post, url: TACore.configuration.api_url + "/api/v2/application/token",
-        :headers => {
-            :uid => TACore.configuration.client_id,
-            :secret => TACore.configuration.client_secret
+        headers: {
+            "uid": TACore.configuration.client_id,
+            "secret": TACore.configuration.client_secret
+
         }
       )
+
       if @@token.nil?
         raise "Authentication Failed"
       end
@@ -89,7 +91,6 @@ module TACore
       begin
         access = RestClient::Request.execute(method: method, url: "api.thinaer.io/api/v2" + uri, payload: payload, headers: headers)
         JSON.parse(access.body)
-        # JSON.parse(access.request(method, TACore.configuration.api_url + uri, options).body)
       rescue => e
         raise TACore::TokenError.new "#{e.message}"
       end
