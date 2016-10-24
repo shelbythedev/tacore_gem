@@ -88,7 +88,7 @@ module TACore
       core = TACore::Auth.new
       begin
         # access = OAuth2::AccessToken.new(core.client, token)
-        JSON.parse(RestClient::Request.execute(method: method, url: "api.thinaer.io/api/v2" + uri, options))
+        JSON.parse(RestClient::Request.execute(method: method, url: "api.thinaer.io/api/v2" + uri, options).body)
         # JSON.parse(access.request(method, TACore.configuration.api_url + uri, options).body)
       rescue => e
         raise TACore::TokenError.new "#{e.message}"
