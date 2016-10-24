@@ -11,8 +11,8 @@ module TACore
     # @param token [String] Oauth2 Token after Authentication
     # @param api_key [String] used from {Client.create}
     # @return [Object] in JSON format
-    def self.create(token, api_key)
-      request(:post, '/api/v1/venues', token, {:headers => {:client_api_key => api_key}})
+    def self.create(token, client_id, venue = {})
+      request(:post, '/venue', {headers: {"client_id": client_id, "token": token}, body: venue})
     end
 
     # Get back Venue information
@@ -20,10 +20,11 @@ module TACore
     # @param api_key [String] used from {Client.create}
     # @param key [String] the Key of the Venue from {Venue.create}
     # @return [Object] in JSON format
-    def self.find(token, api_key, id)
-      request(:get, '/api/v1/venues/' + id.to_s, token, {:headers => {:client_api_key => api_key}})
+    def self.find(token, client_id, venue_id)
+      request(:get, '/venue/' + venue_id.to_s, {headers: {"client_id": client_id, "token": token}})
     end
 
+    # @TODO NO LONGER NEEDED?
     # Get all devices assigned to this venue. Also see {Device.update}.
     # @example See all the Devices assigned to a venue with the venue id and device type.
     #    # Using the client api_key as client["api_key"]
@@ -39,35 +40,37 @@ module TACore
     # @param key [String] the Key of the Venue from {Venue.create}
     # @param device_type [String] select the device_type see {Device.device_types}
     # @return [Array<Object, Object>] in JSON format
-    def self.devices(token, api_key, id, device_type)
-      request(:get, '/api/v1/venues/' + id.to_s + '/devices/' + device_type, token, {:headers => {:client_api_key => api_key}})
-    end
+    # def self.devices(token, api_key, id, device_type)
+    #   request(:get, '/venues/' + id.to_s + '/devices/' + device_type, token, {:headers => {:client_api_key => api_key}})
+    # end
 
+    # @TODO NOT IN API
     # Display all Venues for the client
     # @param token [String] Oauth2 Token after Authentication
     # @param api_key [String] used from {Client.create}
     # @return [Array<Object, Object>] in JSON format
-    def self.all(token, api_key)
-      # returns all venues that belong to this client
-      request(:get, '/api/v1/venues', token, {:headers => {:client_api_key => api_key}})
-    end
+    # def self.all(token, api_key)
+    #   # returns all venues that belong to this client
+    #   request(:get, '/venues', token, {:headers => {:client_api_key => api_key}})
+    # end
 
     # This method will permanently remove the venue from the API.
     # @param token [String] Oauth2 Token after Authentication
     # @param api_key [String] used from {Client.create}
     # @param key [String] the Key of the Venue from {Venue.create}
     # @return [Hash<{"destroy": false, Object}>] in JSON format
-    def self.destroy(token, api_key, id)
-      request(:delete, '/api/v1/venues/' + id.to_s, token, {:headers => {:client_api_key => api_key}})
+    def self.destroy(token, client_id, venue_id)
+      request(:delete, '/venue/' + venue_id.to_s, {headers: {"client_id": client_id, "token": token}})
     end
 
+    # @TODO NOT IN API
     # Get all proximity scan data (filtered) by venue.
     # @param token [String] Oauth2 Token after Authentication
     # @param api_key [String] used from {Client.create}
     # @param key [String] the Key of the Venue from {Venue.create}
     # @return [Hash] in JSON format
-    def self.scans(token, api_key, id)
-      request(:get, '/api/v1/venues/' + id + '/scans', token, {:headers => {:client_api_key => api_key}})
-    end
+    # def self.scans(token, api_key, id)
+    #   request(:get, '/venues/' + id + '/scans', token, {:headers => {:client_api_key => api_key}})
+    # end
   end
 end
