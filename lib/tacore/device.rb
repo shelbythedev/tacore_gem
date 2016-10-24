@@ -33,7 +33,7 @@ module TACore
     # @param device [Object]
     # @return [Object] in JSON format
     def self.update(token, client_id, device_id, device = {})
-      request(:put, '/device/' + device_id.to_s, {headers: {"client_id": client_id, "token": token}, body: device})
+      request(:put, '/device/' + device_id.to_s, device, {"client_id": client_id, "token": token})
     end
 
     # @param token [String] Oauth2 Token after Authentication
@@ -41,7 +41,7 @@ module TACore
     # @param id [Integer] see {Device.unassigned} or {Device.all} to get the Device id
     # @return [Object] in JSON format
     def self.find(token, client_id, id)
-      request(:get, '/device/' + id.to_s, {headers: {"client_id": client_id, "token": token}})
+      request(:get, '/device/' + id.to_s,{}, {"client_id": client_id, "token": token})
     end
 
     # @TODO NOT IN API

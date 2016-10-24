@@ -8,7 +8,7 @@ module TACore
     # @param token [String] Oauth2 Token after Authentication
     # @return [Array<Object, Object>] in JSON format
     def self.all(token)
-      response = request(:get, '/application', {headers: {"token": token}})
+      response = request(:get, '/application',{}, {"token": token})
       return response["clients"]
     end
 
@@ -21,7 +21,7 @@ module TACore
     # @return [Object] in JSON format - the new client
     # @note The new Client will be owned by the application creating it.
     def self.create(token, client = {})
-      request(:post, '/client', {headers: {"token": token}, body: client})
+      request(:post, '/client', client, {"token": token})
     end
 
     # Get details on a specific client by api_key
@@ -33,7 +33,7 @@ module TACore
     # @return [Object] in JSON format
     def self.find(token, client_id)
       #return JSON.parse(make_request('get', '/clients/' + api_key, {:client_api_key => api_key}, {}).body)
-      request(:get, '/client/', {headers: {"client_id": client_id, "token": token}})
+      request(:get, '/client/',{}, {"client_id": client_id, "token": token})
     end
 
     # Update a client details via api_key
@@ -49,7 +49,7 @@ module TACore
     # @return [Object] in JSON format
     # @note The `client` object currently only supports `name`
     def self.update(token, client_id, client = {})
-      request(:put, '/client/', {headers: {"token": token, "client_id": client_id}, body: client})
+      request(:put, '/client/', client, {"token": token, "client_id": client_id})
     end
 
   end
