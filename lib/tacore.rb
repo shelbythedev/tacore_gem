@@ -84,10 +84,10 @@ module TACore
     # @param uri [String]
     # @param token [String] Oauth2 Token after Authentication
     # @param options [Hash<{:headers => {}, :body => {}}>]
-    def self.request(method, uri, content)
+    def self.request(method, uri, payload, headers)
       core = TACore::Auth.new
       begin
-        access = RestClient::Request.execute(method: method, url: "http://localhost:3000/api/v2" + uri, content)
+        access = RestClient::Request.execute(method: method, url: "api.thinaer.io/api/v2" + uri, payload: payload, headers: headers)
         JSON.parse(access.body)
         # JSON.parse(access.request(method, TACore.configuration.api_url + uri, options).body)
       rescue => e
