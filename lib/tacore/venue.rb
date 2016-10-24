@@ -8,7 +8,7 @@ module TACore
     #    venue = TACore::Venue.create(TACORE_TOKEN, client["api_key"])
     #    venue["id"] #=> 752
     #    # After creation save the venue["id"] for later use.
-    # @param token [String] Oauth2 Token after Authentication
+    # @param token [String] Client Token after Authentication
     # @param api_key [String] used from {Client.create}
     # @return [Object] in JSON format
     def self.create(token, client_id, venue = {})
@@ -16,7 +16,7 @@ module TACore
     end
 
     # Get back Venue information
-    # @param token [String] Oauth2 Token after Authentication
+    # @param token [String] Client Token after Authentication
     # @param api_key [String] used from {Client.create}
     # @param key [String] the Key of the Venue from {Venue.create}
     # @return [Object] in JSON format
@@ -35,7 +35,7 @@ module TACore
     #    # Using the venue key as venue["key"]
     #    device_types = TACore::Devices.device_types
     #    devices = TACore::Venue.devices(TACORE_TOKEN, client["api_key"], venue["key"], device_types[:cirrus].first)
-    # @param token [String] Oauth2 Token after Authentication
+    # @param token [String] Client Token after Authentication
     # @param api_key [String] used from {Client.create}
     # @param key [String] the Key of the Venue from {Venue.create}
     # @param device_type [String] select the device_type see {Device.device_types}
@@ -55,7 +55,7 @@ module TACore
     # end
 
     # This method will permanently remove the venue from the API.
-    # @param token [String] Oauth2 Token after Authentication
+    # @param token [String] Client Token after Authentication
     # @param api_key [String] used from {Client.create}
     # @param key [String] the Key of the Venue from {Venue.create}
     # @return [Hash<{"destroy": false, Object}>] in JSON format

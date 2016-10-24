@@ -4,7 +4,6 @@
 # Copyright:: Copyright (c) 2016 Advantix ThinAer, LLC
 # License::   NONE
 
-require 'oauth2'
 require 'rest-client'
 require 'exceptions'
 
@@ -58,10 +57,6 @@ module TACore
     attr_accessor :token
     attr_accessor :client
 
-    # def initialize
-    #   @client = OAuth2::Client.new(TACore.configuration.client_id, TACore.configuration.client_secret, :site => TACore.configuration.api_url)
-    # end
-
     # Used to retrieve the TOKEN after Authentication
     def self.login
       core = TACore::Auth.new
@@ -84,8 +79,8 @@ module TACore
     # Request method
     # @param method [Symbol<:get, :post, :put, :delete>]
     # @param uri [String]
-    # @param token [String] Oauth2 Token after Authentication
-    # @param options [Hash<{:headers => {}, :body => {}}>]
+    # @param payload [Hash] Client Token after Authentication 
+    # @param headers [Hash]
     def self.request(method, uri, payload, headers)
       core = TACore::Auth.new
       begin

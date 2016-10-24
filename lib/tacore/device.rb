@@ -27,7 +27,7 @@ module TACore
     #    # Using the device id as device["id"]
     #    # Using the venue id as venue["key"]
     #    device = TACore::Device.update(TACORE_TOKEN, client["api_key"], device["id"], {venue_key: venue["key"]})
-    # @param token [String] Oauth2 Token after Authentication
+    # @param token [String] Client Token after Authentication
     # @param api_key [String] used from {Client.create}
     # @param id [Integer] see {Device.unassigned} or {Device.all} to get the Device id
     # @param device [Object]
@@ -36,7 +36,7 @@ module TACore
       request(:put, '/device/' + device_id.to_s, device, {"client_id": client_id, "token": token})
     end
 
-    # @param token [String] Oauth2 Token after Authentication
+    # @param token [String] Client Token after Authentication
     # @param api_key [String] used from {Client.create}
     # @param id [Integer] see {Device.unassigned} or {Device.all} to get the Device id
     # @return [Object] in JSON format
