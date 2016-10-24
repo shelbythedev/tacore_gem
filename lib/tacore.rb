@@ -87,7 +87,7 @@ module TACore
     def self.request(method, uri, headers, body)
       core = TACore::Auth.new
       begin
-        access = RestClient::Request.execute(method: method, url: "api.thinaer.io/api/v2" + uri, headers: headers, body: body)
+        access = RestClient::Request.execute(method: method, url: "http://localhost:3000/api/v2" + uri, headers: headers, body: body)
         JSON.parse(access.body)
         # JSON.parse(access.request(method, TACore.configuration.api_url + uri, options).body)
       rescue => e
