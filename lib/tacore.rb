@@ -84,7 +84,7 @@ module TACore
     # @param uri [String]
     # @param token [String] Oauth2 Token after Authentication
     # @param options [Hash<{:headers => {}, :body => {}}>]
-    def self.request(method, uri, content)
+    def self.request(method, uri, content = {})
       core = TACore::Auth.new
       begin
         access = RestClient::Request.execute(method: method, url: "api.thinaer.io/api/v2" + uri, content)
