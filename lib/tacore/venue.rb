@@ -12,7 +12,7 @@ module TACore
     # @param api_key [String] used from {Client.create}
     # @return [Object] in JSON format
     def self.create(token, client_id, venue = {})
-      request(:post, '/venue', {"client_id": client_id, "token": token}, {venue})
+      request(:post, '/venue', {headers: {"client_id": client_id, "token": token}, body: venue})
     end
 
     # Get back Venue information
@@ -21,7 +21,7 @@ module TACore
     # @param key [String] the Key of the Venue from {Venue.create}
     # @return [Object] in JSON format
     def self.find(token, client_id, venue_id)
-      request(:get, '/venue/' + venue_id.to_s, {"client_id": client_id, "token": token}, {})
+      request(:get, '/venue/' + venue_id.to_s, {headers: {"client_id": client_id, "token": token}})
     end
 
     # @TODO NO LONGER NEEDED?
@@ -60,7 +60,7 @@ module TACore
     # @param key [String] the Key of the Venue from {Venue.create}
     # @return [Hash<{"destroy": false, Object}>] in JSON format
     def self.destroy(token, client_id, venue_id)
-      request(:delete, '/venue/' + venue_id.to_s, {"client_id": client_id, "token": token}, {})
+      request(:delete, '/venue/' + venue_id.to_s, {headers: {"client_id": client_id, "token": token}})
     end
 
     # @TODO NOT IN API
