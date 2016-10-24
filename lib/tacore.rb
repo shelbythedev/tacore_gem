@@ -67,9 +67,9 @@ module TACore
       core = TACore::Auth.new
       # use rest-client for auth post to get token
       @@token = RestClient.post("api.thinaer.io/api/v2/application/token",
-        :headers = {
-            :uid => client.id,
-            :secret => client.secret,
+        :headers => {
+            :uid => TACore.configuration.client_id,
+            :secret => TACore.configuration.client_secret
         }
       )
       if @@token.nil?
@@ -93,7 +93,7 @@ module TACore
       rescue => e
         raise TACore::TokenError.new "#{e.message}"
       end
-    end
+    # end
 
   end
 
