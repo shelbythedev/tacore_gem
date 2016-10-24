@@ -53,7 +53,7 @@ module TACore
 	  end
 	end
 
-  # Authorization class that will create the OAuth2 token and authenticate with the API
+  # Authorization class that will create the client token and authenticate with the API
   class Auth < Configuration
     attr_accessor :token
     attr_accessor :client
@@ -70,6 +70,7 @@ module TACore
         headers: {
             "uid": TACore.configuration.client_id,
             "secret": TACore.configuration.client_secret
+
         }
       )
 
