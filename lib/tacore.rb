@@ -4,7 +4,7 @@
 # Copyright:: Copyright (c) 2016 Advantix ThinAer, LLC
 # License::   NONE
 
-require 'oauth2'
+# require 'oauth2'
 require 'rest-client'
 require 'exceptions'
 
