@@ -66,7 +66,7 @@ module TACore
     def self.login
       core = TACore::Auth.new
       # use rest-client for auth post to get token
-      @@token = RestClient.post("api.thinaer.io/api/v2/application/token",
+      @@token = RestClient.post(TACore.configuration.api_url + "/api/v2/application/token",
         :headers => {
             :uid => TACore.configuration.client_id,
             :secret => TACore.configuration.client_secret
