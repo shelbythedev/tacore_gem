@@ -5,6 +5,7 @@
 # License::   NONE
 
 require 'oauth2'
+require 'rest-client'
 require 'exceptions'
 
 # This module holds every public class and method need to
@@ -61,12 +62,16 @@ module TACore
     #   @client = OAuth2::Client.new(TACore.configuration.client_id, TACore.configuration.client_secret, :site => TACore.configuration.api_url)
     # end
 
-    # Used to retrive the TOKEN after Authentication
-    # @return [Oauth2 Object]
+    # Used to retrieve the TOKEN after Authentication
     def self.login
       core = TACore::Auth.new
       # use rest-client for auth post to get token
-      @@token =
+      @@token = RestClient.post("api.thinaer.io/api/v2/application/token",
+        :headers = {
+            :uid => client.id,
+            :secret => client.secret,
+        }
+      )
       if @@token.nil?
         raise "Authentication Failed"
       end
@@ -82,7 +87,8 @@ module TACore
     def self.request(method, uri, token, options = {})
       core = TACore::Auth.new
       begin
-        access = OAuth2::AccessToken.new(core.client, token)
+        # access = OAuth2::AccessToken.new(core.client, token)
+        access = RestClient.execute(method: get, url: "api.thinaer.io/api/v2/application.token", headers: {uid: client.id, secret: client.secret})
         JSON.parse(access.request(method, TACore.configuration.api_url + uri, options).body)
       rescue => e
         raise TACore::TokenError.new "#{e.message}"
