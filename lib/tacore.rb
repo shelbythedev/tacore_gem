@@ -67,9 +67,9 @@ module TACore
       core = TACore::Auth.new
       # use rest-client for auth post to get token
       @@token = RestClient.post("api.thinaer.io/api/v2/application/token",
-        :headers = {
-            :uid => client.id,
-            :secret => client.secret,
+        headers: {
+            "uid": client.id,
+            "secret": client.secret,
         }
       )
       if @@token.nil?
@@ -88,7 +88,7 @@ module TACore
       core = TACore::Auth.new
       begin
         # access = OAuth2::AccessToken.new(core.client, token)
-        JSON.parse(RestClient::Request.execute(method: method, url: "api.thinaer.io/api/v2" + uri, options))
+        JSON.parse(RestClient::Request.execute(method: method, url: "api.thinaer.io/api/v2" + uri, options).body)
         # JSON.parse(access.request(method, TACore.configuration.api_url + uri, options).body)
       rescue => e
         raise TACore::TokenError.new "#{e.message}"
