@@ -24,8 +24,8 @@ module TACore
       request(:post, '/client', client, {"token": token})
     end
 
-    # Get details on a specific client by api_key
-    # @example Find a client with an API-KEY
+    # Get details on a specific client by client_id
+    # @example Find a client with the client_id
     #   # Using the client api_key as client["api_key"]
     #   client = TACore::Client.find(TACORE_TOKEN, client["api_key"])
     # @param token [String] Client Token after Authentication
@@ -33,7 +33,7 @@ module TACore
     # @return [Object] in JSON format
     def self.find(token, client_id)
       #return JSON.parse(make_request('get', '/clients/' + api_key, {:client_api_key => api_key}, {}).body)
-      request(:get, '/client/',{}, {"client_id": client_id, "token": token})
+      request(:get, '/client/',{}, {"token": token, "client_id" => client_id})
     end
 
     # Update a client details via api_key
@@ -49,7 +49,7 @@ module TACore
     # @return [Object] in JSON format
     # @note The `client` object currently only supports `name`
     def self.update(token, client_id, client = {})
-      request(:put, '/client/', client, {"token": token, "client_id": client_id})
+      request(:put, '/client/', client, {"token": token, "client_id" => client_id})
     end
 
   end
