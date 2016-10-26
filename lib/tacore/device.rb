@@ -34,7 +34,7 @@ module TACore
       request(:get, '/device/' + id.to_s,{}, {"client_id" => client_id, "token": token})
     end
 
-    # Display all devices that belong to this Client by device_type
+    # Display all devices that belong to this Client
     # @param token [String] Client Token after Authentication
     # @param client_id [String] used from {Client.create}
     # @return [Array<Object, Object>] in JSON format

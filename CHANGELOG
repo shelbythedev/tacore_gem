@@ -4,7 +4,8 @@
   - Changed Client methods that are still in use to connect to the new thinaer_api
   - Changed Device methods that are still in use to connect to the new thinaer_api
   - Changed Venue methods that are still in use to connect to the new thinaer_api
-  
+  - Added Gateway class and methods
+
 # Version 3.6.0
   - Added api_key for {TACore::Scan.all}
   - Added api_key for {TACore::Movement.all}
