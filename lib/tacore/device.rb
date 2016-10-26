@@ -1,24 +1,14 @@
 module TACore
   # => Device class methods
-  # All devices are included in this, to get a latest list of supported devices see {Device.device_types}.
   class Device < Auth
 
     # @TODO NOT IN API
-    # Show supported Device types
-    # @param token [String] Oauth2 Token after Authentication
-    # @return [Array]
-    # def self.types(token)
-    #   request(:get, '/api/v1/devices/types', token)
-    # end
-
-    # @TODO NOT IN API
     # Show all devices that DO NOT have a venue_id set
-    # @param token [String] Oauth2 Token after Authentication
-    # @param api_key [String] used from {Client.create}
-    # @param device_type [String] select the device_type see {Device.device_types}
+    # @param token [String] Client Token after Authentication
+    # @param client_id [String] used from {Client.create}
     # @return [Array<Object, Object>] in JSON format
-    # def self.unassigned(token, api_key, device_type)
-    #   request(:get, '/api/v1/devices/unassigned/' + device_type, token, {:headers => {:client_api_key => api_key}})
+    # def self.unassigned(token, client_id)
+    #   request(:get, '/client/devices', {}, {token: token, "client_id" => client_id})
     # end
 
     # Device.update is used to set the venue_id.
@@ -29,7 +19,7 @@ module TACore
     #    device = TACore::Device.update(TACORE_TOKEN, client["api_key"], device["id"], {venue_key: venue["key"]})
     # @param token [String] Client Token after Authentication
     # @param api_key [String] used from {Client.create}
-    # @param id [Integer] see {Device.unassigned} or {Device.all} to get the Device id
+    # @param id [Integer] see {Device.all} to get the Device id
     # @param device [Object]
     # @return [Object] in JSON format
     def self.update(token, client_id, device_id, device = {})
@@ -44,15 +34,13 @@ module TACore
       request(:get, '/device/' + id.to_s,{}, {"client_id" => client_id, "token": token})
     end
 
-    # @TODO NOT IN API
     # Display all devices that belong to this Client by device_type
-    # @param token [String] Oauth2 Token after Authentication
-    # @param api_key [String] used from {Client.create}
-    # @param device_type [String] select the device_type see {Device.device_types}
+    # @param token [String] Client Token after Authentication
+    # @param client_id [String] used from {Client.create}
     # @return [Array<Object, Object>] in JSON format
-    # def self.all(token, api_key, device_type)
-    #   request(:get, '/api/v1/devices/all/' + device_type, token, {:headers => {:client_api_key => api_key}})
-    # end
+    def self.all(token, client_id)
+      request(:get, '/client/devices/', {}, {token: token, "client_id" => client_id})
+    end
 
     # Get scan data for this device ID.
     # == Gateway (Cirrus) scan device_type
