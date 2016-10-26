@@ -102,8 +102,7 @@ module TACore
   require 'tacore/client'
   require 'tacore/venue'
   require 'tacore/device'
-  require 'tacore/scan'
-  require 'tacore/movement'
+  require 'tacore/gateway'
 
 
   class Test < Auth
