@@ -44,15 +44,14 @@ module TACore
     #   request(:get, '/venues/' + id.to_s + '/devices/' + device_type, token, {:headers => {:client_api_key => api_key}})
     # end
 
-    # @TODO NOT IN API
     # Display all Venues for the client
-    # @param token [String] Oauth2 Token after Authentication
-    # @param api_key [String] used from {Client.create}
+    # @param token [String] Client Token after Authentication
+    # @param client_id [String] used from {Client.create}
     # @return [Array<Object, Object>] in JSON format
-    # def self.all(token, api_key)
-    #   # returns all venues that belong to this client
-    #   request(:get, '/venues', token, {:headers => {:client_api_key => api_key}})
-    # end
+    def self.all(token, client_id)
+      # returns all venues that belong to this client
+      request(:get, '/client/venues', {}, {"token": token, "client_id" => client_id})
+    end
 
     # This method will permanently remove the venue from the API.
     # @param token [String] Client Token after Authentication
