@@ -32,8 +32,8 @@ module TACore
     # @param id [Integer] see {Device.unassigned} or {Device.all} to get the Device id
     # @param device [Object]
     # @return [Object] in JSON format
-    def self.update(token, client_id, device_id, device = {})
-      request(:put, '/device/' + device_id.to_s, device, {"client_id" => client_id, "token": token})
+    def self.update(token, client_id, id, device = {})
+      request(:put, '/device/' + id.to_s, device, {"client_id" => client_id, "token": token})
     end
 
     # @param token [String] Client Token after Authentication

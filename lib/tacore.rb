@@ -84,8 +84,14 @@ module TACore
     def self.request(method, uri, payload, headers)
       core = TACore::Auth.new
       begin
-        access = RestClient::Request.execute(method: method, url: TACore.configuration.api_url+ "/api/v2" + uri, payload: payload, headers: headers)
-        JSON.parse(access.body)
+        response = RestClient::Request.execute(method: method, url: TACore.configuration.api_url+ "/api/v2" + uri, payload: payload, headers: headers)
+        JSON.parse(response.body)
+
+      # Rescue from rest-client exception due to 410 status from deleted objects
+      rescue RestClient::Exception
+        {deleted: true}
+
+      # Raise TokenError on all other exceptions
       rescue => e
         raise TACore::TokenError.new "#{e.message}"
       end
