@@ -1,15 +1,12 @@
 module TACore
   # => Venue is used to group devices for Clients, Venue could be a location or an area within a location.
-  # It is important to note that all Venue methods require the use a client api_key see {Client.create}.
+  # It is important to note that all Venue methods require the use a client_id see {Client.create}.
   class Venue < Auth
     # Create a new Venue under a Client.
-    # @example Create a new Venue for a Client
-    #    # Using the client api_key as client["api_key"]
-    #    venue = TACore::Venue.create(TACORE_TOKEN, client["api_key"])
-    #    venue["id"] #=> 752
-    #    # After creation save the venue["id"] for later use.
     # @param token [String] Client Token after Authentication
-    # @param api_key [String] used from {Client.create}
+    # @param client_id [String] used from {Client.create}
+    # @param venue [Object] Venue params
+    # @note Venue currently only accepts 'name'
     # @return [Object] in JSON format
     def self.create(token, client_id, venue = {})
       request(:post, '/venue', venue, {"client_id" => client_id, "token": token})
@@ -17,8 +14,8 @@ module TACore
 
     # Get back Venue information
     # @param token [String] Client Token after Authentication
-    # @param api_key [String] used from {Client.create}
-    # @param key [String] the Key of the Venue from {Venue.create}
+    # @param client_id [String] used from {Client.create}
+    # @param venue_id [String] used from {Venue.create}
     # @return [Object] in JSON format
     def self.find(token, client_id, venue_id)
       request(:get, '/venue/' + venue_id.to_s,{}, {"client_id" => client_id, "token": token})
@@ -55,9 +52,9 @@ module TACore
 
     # This method will permanently remove the venue from the API.
     # @param token [String] Client Token after Authentication
-    # @param api_key [String] used from {Client.create}
-    # @param key [String] the Key of the Venue from {Venue.create}
-    # @return [Hash<{"destroy": false, Object}>] in JSON format
+    # @param client_id [String] used from {Client.create}
+    # @param venue_id [String] the Key of the Venue from {Venue.create}
+    # @return [Hash, status: 410] in JSON format
     def self.destroy(token, client_id, venue_id)
       request(:delete, '/venue/' + venue_id.to_s,{}, {"client_id" => client_id, "token": token})
     end

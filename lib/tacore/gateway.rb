@@ -2,13 +2,13 @@ module TACore
   # => Gateway class methods
   class Gateway < Auth
 
-      # Shows the devices that are seen by the gateway id
-      # @param token [String] Client Token after Authentication
-      # @param client_id [String] used from {Client.create}
-      # @param gateway_id [String] Gateway ID
-      # @return [Array<Object, Object>] in JSON format
-      def self.sees(token, client_id, gateway_id)
-        request(:get, '/gateway/' + gateway_id.to_s + '/sees', {}, {token: token, "client_id" => client_id})
+    # Shows the devices that are seen by the gateway id
+    # @param token [String] Client Token after Authentication
+    # @param client_id [String] used from {Client.create}
+    # @param gateway_id [String] Gateway ID
+    # @return [Array<Object, Object>] in JSON format
+    def self.sees(token, client_id, gateway_id)
+      request(:get, '/gateway/' + gateway_id.to_s + '/sees', {}, {token: token, "client_id" => client_id})
     end
 
     # Gets the Gateway by ID

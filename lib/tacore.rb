@@ -79,8 +79,8 @@ module TACore
     # Request method
     # @param method [Symbol<:get, :post, :put, :delete>]
     # @param uri [String]
-    # @param payload [Hash] Client Token after Authentication
-    # @param headers [Hash]
+    # @param payload [Hash] Changes to document object (optional)
+    # @param headers [Hash] token, client_id,...
     def self.request(method, uri, payload, headers)
       core = TACore::Auth.new
       begin
