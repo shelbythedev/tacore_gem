@@ -2,15 +2,6 @@ module TACore
   # => Device class methods
   class Device < Auth
 
-    # @TODO NOT IN API
-    # Show all devices that DO NOT have a venue_id set
-    # @param token [String] Client Token after Authentication
-    # @param client_id [String] used from {Client.create}
-    # @return [Array<Object, Object>] in JSON format
-    # def self.unassigned(token, client_id)
-    #   request(:get, '/client/devices', {}, {token: token, "client_id" => client_id})
-    # end
-
     # Device.update is used to set the venue_id.
     # @example Update the Device venue id
     #    # Using the client api_key as client["api_key"]
