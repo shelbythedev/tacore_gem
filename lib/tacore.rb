@@ -79,13 +79,19 @@ module TACore
     # Request method
     # @param method [Symbol<:get, :post, :put, :delete>]
     # @param uri [String]
-    # @param payload [Hash] Client Token after Authentication
-    # @param headers [Hash]
+    # @param payload [Hash] Changes to document object (optional)
+    # @param headers [Hash] token, client_id,...
     def self.request(method, uri, payload, headers)
       core = TACore::Auth.new
       begin
-        access = RestClient::Request.execute(method: method, url: TACore.configuration.api_url+ "/api/v2" + uri, payload: payload, headers: headers)
-        JSON.parse(access.body)
+        response = RestClient::Request.execute(method: method, url: TACore.configuration.api_url+ "/api/v2" + uri, payload: payload, headers: headers)
+        JSON.parse(response.body)
+
+      # Rescue from rest-client exception due to 410 status from deleted objects
+      rescue RestClient::Exception
+        {deleted: true}
+
+      # Raise TokenError on all other exceptions
       rescue => e
         raise TACore::TokenError.new "#{e.message}"
       end
