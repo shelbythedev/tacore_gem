@@ -8,7 +8,7 @@ describe TACore do
       expect(venue["key"]).to_not eq(nil)
 
       client = TACore::Client.find(TOKEN, TEST_CLIENT_KEY)
-      expect(venue["client_id"]).to eq(client["id"])
+      expect(venue["client-id"]).to eq(client["id"])
 
       # => Cleanup
       venue = TACore::Venue.destroy(TOKEN, TEST_CLIENT_KEY, venue["id"])

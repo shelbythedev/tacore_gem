@@ -9,7 +9,7 @@ module TACore
     # @note Venue currently only accepts 'name'
     # @return [Object] in JSON format
     def self.create(token, client_id, venue = {})
-      request(:post, '/venue', venue, {"client_id" => client_id, "token": token})
+      request(:post, '/venue', venue, {"client-id" => client_id, "token": token})
     end
 
     # Get back Venue information
@@ -18,7 +18,7 @@ module TACore
     # @param venue_id [String] used from {Venue.create}
     # @return [Object] in JSON format
     def self.find(token, client_id, venue_id)
-      request(:get, '/venue/' + venue_id.to_s,{}, {"client_id" => client_id, "token": token})
+      request(:get, '/venue/' + venue_id.to_s,{}, {"client-id" => client_id, "token": token})
     end
 
     # Display all Venues for the client
@@ -27,7 +27,7 @@ module TACore
     # @return [Array<Object, Object>] in JSON format
     def self.all(token, client_id)
       # returns all venues that belong to this client
-      request(:get, '/client/venues', {}, {"token": token, "client_id" => client_id})
+      request(:get, '/client/venues', {}, {"token": token, "client-id" => client_id})
     end
 
     # This method will permanently remove the venue from the API.
@@ -36,7 +36,7 @@ module TACore
     # @param venue_id [String] the Key of the Venue from {Venue.create}
     # @return [Hash, status: 410] in JSON format
     def self.destroy(token, client_id, venue_id)
-      request(:delete, '/venue/' + venue_id.to_s,{}, {"client_id" => client_id, "token": token})
+      request(:delete, '/venue/' + venue_id.to_s,{}, {"client-id" => client_id, "token": token})
     end
   end
 end
