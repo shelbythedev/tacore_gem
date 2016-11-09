@@ -29,10 +29,16 @@ module TACore
       request(:get, '/client/devices/', {}, {"token": token, "client-id" => client_id})
     end
 
+    # Display all iris devices that belong to this application
+    # @param token [String] Client Token after Authentication
+    # @return [Array<Object, Object>] in JSON format
     def self.iris(token)
       request(:get, '/application/iris', {}, {"token": token})
     end
 
+    # Display all cirrus devices that belong to this application
+    # @param token [String] Client Token after Authentication
+    # @return [Array<Object, Object>] in JSON format
     def self.cirrus(token)
       request(:get, '/application/cirrus', {}, {"token": token})
     end

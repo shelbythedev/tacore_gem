@@ -7,7 +7,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Greg Winn", "Brandon Criss", "Shelby Solomon"]
   s.email       = 'greg.winn@thinaer.io'
   s.files       = ["lib/tacore.rb", "lib/exceptions.rb", "lib/tacore/client.rb",
-                  "lib/tacore/venue.rb", "lib/tacore/device.rb", "lib/tacore/gateway.rb"]
+                  "lib/tacore/venue.rb", "lib/tacore/device.rb", "lib/tacore/gateway.rb",
+                  "lib/tacore/app.rb"]
   s.homepage    = 'http://thinaer.io'
   s.license     = 'None'
   s.add_dependency("rest-client", "2.0.0")
