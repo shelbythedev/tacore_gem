@@ -65,7 +65,6 @@ module TACore
         headers: {
             "uid": TACore.configuration.client_id,
             "secret": TACore.configuration.client_secret
-
         }
       )
 
@@ -85,15 +84,24 @@ module TACore
       core = TACore::Auth.new
       begin
         response = RestClient::Request.execute(method: method, url: TACore.configuration.api_url+ "/api/v2" + uri, payload: payload, headers: headers)
-        JSON.parse(response.body)
+        case response.code
+        when 200
+          JSON.parse(response.body)
+        else
+          raise RestClient::ExceptionWithResponse
+        end
 
-      # Rescue from rest-client exception due to 410 status from deleted objects
-      rescue RestClient::Exception
-        {deleted: true}
-
-      # Raise TokenError on all other exceptions
-      rescue => e
+      # Rest Client exceptions
+      rescue RestClient::ExceptionWithResponse => e
+        # Raise TokenError on all other exceptions
         raise TACore::TokenError.new "#{e.message}"
+
+      # Rescue for unauthorized/token expired
+      rescue AuthenticationError
+        self.login
+      # Rescue from rest-client exception due to 410 status from deleted objects
+      rescue NotThereError
+        {deleted: true}
       end
     end
 
