@@ -38,5 +38,14 @@ module TACore
     def self.destroy(token, client_id, venue_id)
       request(:delete, '/venue/' + venue_id.to_s,{}, {"client-id" => client_id, "token": token})
     end
+
+    # Get all devices belonging to the given venue
+    # @param token [String] Client Token after Authentication
+    # @param client_id [String] used from {Client.create}
+    # @param venue_id [String] the Key of the Venue from {Venue.create}
+    # @return [Hash, status: 410] in JSON format
+    def self.devices(token, client_id, venue_id)
+      request(:get, '/venue/' + venue_id.to_s + '/devices',{}, {"client-id" => client_id, "token": token})
+    end
   end
 end
