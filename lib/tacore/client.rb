@@ -37,5 +37,11 @@ module TACore
       request(:put, '/client/', client, {"token": token, "client-id" => client_id})
     end
 
+    # Delete a client by id
+    # @param token [String] Client Token after Authentication
+    # @param client_id [String] used from {Client.create}
+    def self.destroy(token, client_id)
+      request(:delete, '/client/', {"token": token, "client-id" => client_id})
+    end
   end
 end
