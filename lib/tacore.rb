@@ -87,6 +87,8 @@ module TACore
         case response.code
         when 200
           JSON.parse(response.body)
+        when 204
+          return {}
         else
           raise RestClient::ExceptionWithResponse
         end
