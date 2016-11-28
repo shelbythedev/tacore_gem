@@ -6,6 +6,8 @@
 
 require 'rest-client'
 require 'exceptions'
+require 'net/http'
+require 'uri'
 
 # This module holds every public class and method need to
 # to authenticate and configure the TACore GEM
@@ -16,11 +18,13 @@ module TACore
 	    attr_accessor :api_url
       attr_accessor :client_id
       attr_accessor :client_secret
+      attr_accessor :api_key
 
 	    def initialize
 	      self.api_url 		= nil
         self.client_id       = nil
         self.client_secret   = nil
+        self.api_key   = nil
 	    end
 	end
 
@@ -36,6 +40,12 @@ module TACore
 		attr_accessor :api_url
     attr_accessor :client_id
     attr_accessor :client_secret
+    attr_accessor :api_key
+    def api_key
+      raise "api_key is needed to connect" unless @api_key
+      @api_key
+    end
+
 		def api_url
 	    	raise "api_url is needed to connect" unless @api_url
 	    	@api_url
@@ -59,14 +69,21 @@ module TACore
 
     # Used to retrieve the TOKEN after Authentication
     def self.login
-      core = TACore::Auth.new
-      # use rest-client for auth post to get token
-      @@token = RestClient::Request.execute(method: :post, url: TACore.configuration.api_url + "/api/v2/application/token",
-        headers: {
-            "uid": TACore.configuration.client_id,
-            "secret": TACore.configuration.client_secret
-        }
-      )
+
+      uri = URI.parse(TACore.configuration.api_url + "/api/v2/application/token")
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+      request = Net::HTTP::Post.new(uri.request_uri)
+
+      # Set Headers
+      request['uid'] = TACore.configuration.client_id
+      request['secret'] = TACore.configuration.client_secret
+      request['x-api-key'] = TACore.configuration.api_key
+
+      request.add_field "Content-Type", "application/json"
+      response = http.request(request)
+
+      puts response.code
 
       if @@token.nil?
         raise "Authentication Failed"
