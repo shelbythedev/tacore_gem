@@ -15,5 +15,19 @@ module TACore
       request(:get, '/application/all', {}, {"token": token})
     end
 
+    # Get all Iris devices assigned to your application
+    # @param token [String] Application Token after Authentication
+    # @return [Object] in JSON format
+    def self.devices(token)
+      request(:get, '/application/iris', {}, {"token": token})
+    end
+
+    # Get all Cirrus gateways assigned to your application
+    # @param token [String] Application Token after Authentication
+    # @return [Object] in JSON format
+    def self.gateways(token)
+      request(:get, '/application/cirrus', {}, {"token": token})
+    end
+
   end
 end
