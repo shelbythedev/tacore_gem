@@ -5,6 +5,10 @@
 gem 'TACore'
 ```
 
+```
+$> gem install TACore
+```
+
 ## Test install
 ```
 $> irb -r tacore
@@ -37,6 +41,9 @@ client["_id"]  => 3122
 client["name"]  => "My Client"
 ```
 
+## Documentation
+
+http://www.rubydoc.info/github/thinaer/tacore_gem/
 
 ## Support
 
