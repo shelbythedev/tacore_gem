@@ -1,7 +1,7 @@
-lib/tacore.rb 24b0f730faba265e26129b735540af2dc31af693
-lib/exceptions.rb 0ad5cf8d26beca8e00a49181ae97a3a660d5059a
-lib/tacore/scan.rb f87d444e14793d1f15c91665a4bdd7af773238fa
-lib/tacore/venue.rb 3ddd5e36d32db2571ca7f513d610712da4ea0c34
-lib/tacore/device.rb 48bd722d9e7a67e97daaa6b52c97d4dffaccd828
-lib/tacore/client.rb 8280f73d164e2f0464038947b5c515f317f9c801
-lib/tacore/movement.rb e4d8689f113fec878875f95a96a4fb10595d49e1
+lib/tacore.rb ca1de8e043208edc6d94f31e323a6f574d0daa05
+lib/tacore/app.rb 8f4d8a337dd5d8e0be777f5c85f8173dd228ecbf
+lib/exceptions.rb 55f2c8e6a6ed0ea96bc7b1589de0a8ce62ae85d6
+lib/tacore/venue.rb 6d1125783574a3f995208a9384bfae76341c38b0
+lib/tacore/client.rb a39870dd2dea3c75ce36f2b1aff2a3fe4f44c847
+lib/tacore/device.rb 82f4a464abdc326761f3ba82b8149c4cdb7f13f8
+lib/tacore/gateway.rb e1f2b3525b97a7d2672e5c45340e1e7db8b16be4

@@ -1,94 +1,46 @@
 module TACore
   # => Device class methods
-  # All devices are included in this, to get a latest list of supported devices see {Device.device_types}.
   class Device < Auth
 
-    # Show supported Device types
-    # @param token [String] Oauth2 Token after Authentication
-    # @return [Array]
-    def self.types(token)
-      request(:get, '/api/v1/devices/types', token)
-    end
-
-    # Show all devices that DO NOT have a venue_id set
-    # @param token [String] Oauth2 Token after Authentication
-    # @param api_key [String] used from {Client.create}
-    # @param device_type [String] select the device_type see {Device.device_types}
-    # @return [Array<Object, Object>] in JSON format
-    def self.unassigned(token, api_key, device_type)
-      request(:get, '/api/v1/devices/unassigned/' + device_type, token, {:headers => {:client_api_key => api_key}})
-    end
-
-    # Device.update is used to set the venue_id.
-    # @example Update the Device venue id
-    #    # Using the client api_key as client["api_key"]
-    #    # Using the device id as device["id"]
-    #    # Using the venue id as venue["key"]
-    #    device = TACore::Device.update(TACORE_TOKEN, client["api_key"], device["id"], {venue_key: venue["key"]})
-    # @param token [String] Oauth2 Token after Authentication
-    # @param api_key [String] used from {Client.create}
-    # @param id [Integer] see {Device.unassigned} or {Device.all} to get the Device id
-    # @param device [Object]
+    # Update a device's venue_id
+    # @param token [String] Client Token after Authentication
+    # @param client_id [String] used from {Client.create}
+    # @param id [Integer] Device ID
+    # @param device [Object] Venue ID as a value
     # @return [Object] in JSON format
-    def self.update(token, api_key, id, device = {})
-      request(:put, '/api/v1/devices/' + id.to_s, token, {:body => {:device => device}, :headers => {:client_api_key => api_key}})
+    def self.update(token, client_id, device_id, device = {})
+      request(:put, '/device/' + device_id.to_s, device, {"client-id" => client_id, "token": token})
     end
 
-    # @param token [String] Oauth2 Token after Authentication
-    # @param api_key [String] used from {Client.create}
-    # @param id [Integer] see {Device.unassigned} or {Device.all} to get the Device id
+    # Find device by device_id
+    # @param token [String] Client Token after Authentication
+    # @param client_id [String] used from {Client.create}
+    # @param device_id [Integer] Device ID
     # @return [Object] in JSON format
-    def self.find(token, api_key, id)
-      request(:get, '/api/v1/devices/' + id.to_s, token, {:headers => {:client_api_key => api_key}})
+    def self.find(token, client_id, device_id)
+      request(:get, '/device/' + device_id.to_s,{}, {"client-id" => client_id, "token": token})
     end
 
-    # Display all devices that belong to this Client by device_type
-    # @param token [String] Oauth2 Token after Authentication
-    # @param api_key [String] used from {Client.create}
-    # @param device_type [String] select the device_type see {Device.device_types}
+    # Display all devices that belong to this Client
+    # @param token [String] Client Token after Authentication
+    # @param client_id [String] used from {Client.create}
     # @return [Array<Object, Object>] in JSON format
-    def self.all(token, api_key, device_type)
-      request(:get, '/api/v1/devices/all/' + device_type, token, {:headers => {:client_api_key => api_key}})
+    def self.all(token, client_id)
+      request(:get, '/client/devices/', {}, {"token": token, "client-id" => client_id})
     end
 
-    # Get scan data for this device ID.
-    # == Gateway (Cirrus) scan device_type
-    # * Key: The device ID given when making the request
-    # * Value: An array of device IDs that the device sees.
-    # @example Get asset (Iris) ids that the given device sees.
-    #    # Using the client api_key as client["api_key"]
-    #    # Using the device id as device["id"]
-    #    scans = TACore::Device.scans(token, api_key, id, "cirrus")
-    #    # => {"756" => [22,35,621,503]}
-    #
-    # -------------------
-    #
-    # == Asset (Iris) scan device_type
-    # * device_id: The Gateway device id that sees the given device ID
-    # * last_movement: A UNIX timestap of the last time this device was seen by a new Gateway.
-    # @example Get the device that sees this asset (Iris)
-    #    # Using the client api_key as client["api_key"]
-    #    # Using the device id as device["id"]
-    #    scan = TACore::Device.scans(token, api_key, id, "iris")
-    #    # => {"device_id" => 756, "last_movement" => 1464905199}
-    #
-    # == Scan data (raw = false)
-    # With the raw setting to false you will receive the most up to date and accurate data. Data coming from this source is cleaned with our custom built service called Overlook.
-    #
-    # -------------------
-    #
-    # @note Overlook is a custom service built into the ThinAer Platform that allows us to determine accurate proximity along with a simplified output for API clients.
-    # @param token [String] Oauth2 Token after Authentication
-    # @param api_key [String] used from {Client.create}
-    # @param id [Integer] see {Device.unassigned} or {Device.all} to get the Device id
-    # @param device_type [String] select the device_type see {Device.device_types}
-    # @param raw [Boolean]
-    # @return [Hash<raw=false> | Object<raw=true>] in JSON format
-    # @note raw [Boolean] when set to `true` will give the last 10 records of scan data.
-    # @since 3.4.0
-    # @note Always check the CHANGELOG for update notes
-    def self.scans(token, api_key, id, device_type, raw = false)
-      request(:get, '/api/v1/devices/' + id.to_s + '/scans/' + device_type + '?raw=' + raw.to_s, token, {:headers => {:client_api_key => api_key}})
+    # Display all iris devices that belong to this application
+    # @param token [String] Client Token after Authentication
+    # @return [Array<Object, Object>] in JSON format
+    def self.iris(token)
+      request(:get, '/application/iris', {}, {"token": token})
+    end
+
+    # Display all cirrus devices that belong to this application
+    # @param token [String] Client Token after Authentication
+    # @return [Array<Object, Object>] in JSON format
+    def self.cirrus(token)
+      request(:get, '/application/cirrus', {}, {"token": token})
     end
 
   end
