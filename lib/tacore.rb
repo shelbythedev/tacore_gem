@@ -8,6 +8,7 @@ require 'rest-client'
 require 'exceptions'
 require 'net/http'
 require 'uri'
+require 'json'
 
 # This module holds every public class and method need to
 # to authenticate and configure the TACore GEM
@@ -67,28 +68,27 @@ module TACore
     attr_accessor :token
     attr_accessor :client
 
-    # Used to retrieve the TOKEN after Authentication
+    # Used to retrieve the TOKEN and Authenticate the application
     def self.login
 
-      uri = URI.parse(TACore.configuration.api_url + "/api/v2/application/token")
-      http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true
-      request = Net::HTTP::Post.new(uri.request_uri)
+      # use rest-client for auth post to get token
+      @@token = RestClient::Request.execute(method: :post, url: TACore.configuration.api_url + "/application/token",
+        headers: {
+            "uid": TACore.configuration.client_id,
+            "secret": TACore.configuration.client_secret,
+            "x-api-key": TACore.configuration.api_key
+        }
+      )
 
-      # Set Headers
-      request['uid'] = TACore.configuration.client_id
-      request['secret'] = TACore.configuration.client_secret
-      request['x-api-key'] = TACore.configuration.api_key
-
-      request.add_field "Content-Type", "application/json"
-      response = http.request(request)
-
-      puts response.code
+      if JSON.parse(@@token).include? "error"
+        # The responce included an error, stop and show it!
+        raise JSON.parse(@@token)["error"]
+      end
 
       if @@token.nil?
         raise "Authentication Failed"
       end
-      @@token
+      JSON.parse(@@token)
     end
 
     # Internal request only.
@@ -98,16 +98,17 @@ module TACore
     # @param payload [Hash] Changes to document object (optional)
     # @param headers [Hash] token, client_id,...
     def self.request(method, uri, payload, headers)
-      core = TACore::Auth.new
+
+      # Add static API-KEY to headers from config
+      headers["x-api-key"] = TACore.configuration.api_key
+
       begin
-        response = RestClient::Request.execute(method: method, url: TACore.configuration.api_url+ "/api/v2" + uri, payload: payload, headers: headers)
+        response = RestClient::Request.execute(method: method, url: TACore.configuration.api_url + uri, payload: payload, headers: headers)
         case response.code
         when 200
           JSON.parse(response.body)
-        when 204
-          return {}
         else
-          raise RestClient::ExceptionWithResponse
+          return { "error": { "code": response.code, "body": JSON.parse(response.body) }}
         end
 
       # Rest Client exceptions
