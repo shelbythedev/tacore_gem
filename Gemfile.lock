@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    TACore (4.0.0)
+    TACore (4.1.0)
       rest-client (= 2.0.0)
 
 GEM
