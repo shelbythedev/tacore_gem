@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'TACore'
-  s.version     = '4.0.0'
+  s.version     = '4.0.1'
   s.date        = '2016-12-02'
   s.summary     = "ThinAer Core API for the THINaer Platform"
   s.description = "This allows access to the TA Core API"
@@ -11,6 +11,6 @@ Gem::Specification.new do |s|
                   "lib/tacore/app.rb"]
   s.homepage    = 'http://thinaer.io'
   s.license     = 'MIT'
-  s.add_dependency("rest-client", "2.0.0")
+  s.add_runtime_dependency "rest-client", "~>2.0.0"
   s.add_development_dependency "rspec"
 end
