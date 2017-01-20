@@ -24,7 +24,7 @@ module TACore
     # @param client_id [String] used from {Client.create}
     # @return [Object] in JSON format
     def self.find(token, client_id)
-      request(:get, '/client/',{}, {"token": token, "client-id" => client_id})
+      request(:get, '/client/' + client_id.to_s, {}, {"token": token})
     end
 
     # Update a client details via api_key
@@ -34,14 +34,14 @@ module TACore
     # @return [Object] in JSON format
     # @note The `client` object currently only supports `name`
     def self.update(token, client_id, client = {})
-      request(:put, '/client/', client, {"token": token, "client-id" => client_id})
+      request(:put, '/client/' + client_id.to_s, {"token": token})
     end
 
     # Delete a client by id
     # @param token [String] Client Token after Authentication
     # @param client_id [String] used from {Client.create}
     def self.destroy(token, client_id)
-      request(:delete, '/client/', {"token": token, "client-id" => client_id})
+      request(:delete, '/client/' + client_id.to_s, {"token": token})
     end
 
     # Get all devices assigned to this client-id
@@ -49,7 +49,7 @@ module TACore
     # @param client_id [String] used from {Client.create}
     # @return [Object] in JSON format
     def self.devices(token, client_id)
-      request(:get, '/client/devices',{}, {"token": token, "client-id" => client_id})
+      request(:get, '/client/' + client_id.to_s + '/devices',{}, {"token": token})
     end
 
     # Get all gateways assigned to this client-id
@@ -57,7 +57,7 @@ module TACore
     # @param client_id [String] used from {Client.create}
     # @return [Object] in JSON format
     def self.gateways(token, client_id)
-      request(:get, '/client/gateways',{}, {"token": token, "client-id" => client_id})
+      request(:get, '/client/' + client_id.to_s + '/gateways',{}, {"token": token})
     end
 
     # Get all Venues created by this client-id
@@ -65,7 +65,7 @@ module TACore
     # @param client_id [String] used from {Client.create}
     # @return [Object] in JSON format
     def self.venues(token, client_id)
-      request(:get, '/client/venues',{}, {"token": token, "client-id" => client_id})
+      request(:get, '/client/' + client_id.to_s + '/venues',{}, {"token": token})
     end
 
   end
