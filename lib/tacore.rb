@@ -131,6 +131,7 @@ module TACore
   require 'tacore/venue'
   require 'tacore/device'
   require 'tacore/gateway'
+  require 'tacore/webhook'
   require 'tacore/app'
 
 

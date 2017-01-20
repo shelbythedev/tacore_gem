@@ -1,3 +1,6 @@
+# Version 4.1.0
+  - Added Webhook wrapper for THINaer API 2.0 update
+
 # Version 4.0.0
   - Changed Auth.login to connect to the new thinaer_api
   - Changed Auth.request to connect to the new thinaer_api

@@ -1,15 +1,6 @@
 module TACore
   # => Gateway class methods
   class Gateway < Auth
-
-    # Get all gateways that belong to a client
-    # @param token [String] Client Token after Authentication
-    # @param client_id [String] used from {Client.create}
-    # @return [Array<Object, Object>] in JSON format
-    def self.all(token, client_id)
-      request(:get, '/client/gateways/', {}, {token: token, "client-id" => client_id})
-    end
-
     # Shows the devices that are seen by the gateway id
     # @param token [String] Client Token after Authentication
     # @param client_id [String] used from {Client.create}
