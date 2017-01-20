@@ -1,8 +1,13 @@
 PATH
   remote: .
   specs:
+<<<<<<< HEAD
     TACore (4.1.0)
       rest-client (= 2.0.0)
+=======
+    TACore (4.0.1)
+      rest-client (~> 2.0.0)
+>>>>>>> 4.0.2
 
 GEM
   remote: https://rubygems.org/
