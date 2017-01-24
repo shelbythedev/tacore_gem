@@ -111,15 +111,14 @@ module TACore
           return { "error": { "code": response.code, "body": JSON.parse(response.body) }}
         end
 
+      rescue RestClient::Gone
+        {deleted: true}
+
       # Rest Client exceptions
       rescue RestClient::ExceptionWithResponse => e
-        case response.code
-        when 410
-          {deleted: true}
-        else
-          # Raise TokenError on all other exceptions
-          raise TACore::TokenError.new "#{e.message}"
-        end
+        # Raise TokenError on all other exceptions
+        raise TACore::TokenError.new "#{e.message}"
+
 
       # Rescue for unauthorized/token expired
       rescue AuthenticationError
