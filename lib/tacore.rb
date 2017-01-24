@@ -113,8 +113,13 @@ module TACore
 
       # Rest Client exceptions
       rescue RestClient::ExceptionWithResponse => e
-        # Raise TokenError on all other exceptions
-        raise TACore::TokenError.new "#{e.message}"
+        case response.code
+        when 410
+          {deleted: true}
+        else
+          # Raise TokenError on all other exceptions
+          raise TACore::TokenError.new "#{e.message}"
+        end
 
       # Rescue for unauthorized/token expired
       rescue AuthenticationError
