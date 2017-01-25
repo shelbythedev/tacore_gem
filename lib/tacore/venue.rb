@@ -16,8 +16,8 @@ module TACore
     # @param venue [Object] Venue params
     # @note Venue currently only accepts 'name'
     # @return [Object] in JSON format
-    def self.update(token, venue = {})
-      request(:put, '/venue', venue, {"token": token})
+    def self.update(token, venue_id, venue = {})
+      request(:put, '/venue/' + venue_id.to_s, venue, {"token": token})
     end
 
     # Get back Venue information
