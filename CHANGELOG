@@ -1,3 +1,6 @@
+# Version 4.1.2
+  - Bug fix for {TACore::Venue.update}
+
 # Version 4.1.1
   - Bug fix for {TACore::Venue.destroy} and {RestClient::Gone} exception
 
