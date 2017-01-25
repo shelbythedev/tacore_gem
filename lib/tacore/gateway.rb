@@ -26,7 +26,7 @@ module TACore
     # @param gateway [Object]
     # @return [Array<Object, Object>] in JSON format
     def self.update(token, client_id, gateway_id, gateway = {})
-      request(:put, '/gateway/' + gateway_id.to_s, {}, {token: token, "client-id" => client_id})
+      request(:put, '/gateway/' + gateway_id.to_s, gateway, {token: token, "client-id" => client_id})
     end
 
   end
