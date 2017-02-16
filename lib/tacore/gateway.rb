@@ -10,6 +10,16 @@ module TACore
       request(:get, '/gateway/' + gateway_id.to_s + '/sees', {}, {token: token, "client-id" => client_id})
     end
 
+    # Shows the devices that are seen by the gateway id with options to query with
+    # @param token [String] Client Token after Authentication
+    # @param client_id [String] used from {Client.create}
+    # @param gateway_id [String] Gateway ID
+    # @param options [String] Options
+    # @return [Array<Object, Object>] in JSON format
+    def self.sees_with_options(token, client_id, gateway_id, options)
+      request(:get, '/gateway/' + gateway_id.to_s + '/sees' + '?' + options, {}, {token: token, "client-id" => client_id})
+    end
+
     # Gets the Gateway by ID
     # @param token [String] Client Token after Authentication
     # @param client_id [String] used from {Client.create}
