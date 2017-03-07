@@ -121,8 +121,8 @@ module TACore
 
 
       # Rescue for unauthorized/token expired
-      rescue AuthenticationError
-        self.login
+      # rescue AuthenticationError
+      #   self.login
       # Rescue from rest-client exception due to 410 status from deleted objects
       rescue NotThereError
         {deleted: true}
